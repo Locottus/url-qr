@@ -1,0 +1,127 @@
+
+<html>
+    <head>
+    <title>URL COVID QR</title>
+    
+    <style type="text/css">
+    body{
+        width:100%;
+        text-align:center;
+        padding: 10px;
+        margin: 10px auto;
+    }
+    #main{
+        margin: 15px auto;
+        background:white;
+        overflow: auto;
+        width: 100%;
+    }
+    #mp1{
+        text-align:center;
+        font-size:35px;
+    }
+    #outdiv
+    {
+        width:320px;
+        height:240px;
+        border: solid;
+        border-width: 3px 3px 3px 3px;
+    }
+    #v{
+        width:320px;
+        height:240px;
+    }
+    #qr-canvas{
+    display:none;
+}
+#qrfile{
+    width:320px;
+    height:240px;
+}
+
+    #result{
+        border: solid;
+        border-width: 1px 1px 1px 1px;
+        padding:20px;
+        width:70%;
+    }
+    
+    
+    </style>
+    <script src="jquery-3.5.1.min.js"> </script>
+    <script src="library.js"> </script>
+    
+    <script type="text/javascript" src="llqrcode.js"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <script type="text/javascript" src="webqr.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+
+    <script type="text/javascript">
+    
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-24451557-1']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+    </script>
+    
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">QR URL</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Inicio</a></li>
+                <li><a href="#">Iniciar Sesion</a></li>
+                <li><a href="#">Escanear</a></li>
+                <li><a href="#">Reportarse Positivo</a></li>
+              </ul>
+              <!--
+              <button class="btn btn-danger navbar-btn">Button</button>
+              -->
+            </div>
+          </nav>
+          
+
+    <div id="main">
+    <div id="header">
+    <div id="mainbody">
+    <table class="tsel" border="0" width="100%">
+    <tr>
+    <td valign="top" align="center" width="50%">
+    <table class="tsel" border="0">
+    <tr>
+    <td><img class="selector" id="webcamimg" src="vid.png" onclick="setwebcam()" align="left" /></td>
+    <td><img class="selector" id="qrimg" src="cam.png" onclick="setimg()" align="right"/></td></tr>
+    <tr><td colspan="2" align="center">
+    <div id="outdiv">
+    </div></td></tr>
+    </table>
+    </td>
+    </tr>
+    <tr><td colspan="3" align="center">
+    <img src="down.png"/>
+    </td></tr>
+    <tr><td colspan="3" align="center">
+    <div id="result"></div>
+    </td></tr>
+    </table>
+    <canvas id="qr-canvas" width="800" height="600"></canvas>
+    <script type="text/javascript">load();</script>
+    </body>
+    
+    </html>
