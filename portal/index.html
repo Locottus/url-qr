@@ -3,48 +3,9 @@
     <head>
     <title>URL COVID QR</title>
     
-    <style type="text/css">
-    body{
-        width:100%;
-        text-align:center;
-        padding: 10px;
-        margin: 10px auto;
-    }
-    #main{
-        margin: 15px auto;
-        background:white;
-        overflow: auto;
-        width: 100%;
-    }
-    #mp1{
-        text-align:center;
-        font-size:35px;
-    }
-    #outdiv
-    {
-        width:320px;
-        height:240px;
-        border: solid;
-        border-width: 3px 3px 3px 3px;
-    }
-    #v{
-        width:320px;
-        height:240px;
-    }
-    #qr-canvas{
-    display:none;
-}
-#qrfile{
-    width:320px;
-    height:240px;
-}
+    <link rel="stylesheet" type="text/css" href="index.css" />
 
-    #result{
-        border: solid;
-        border-width: 1px 1px 1px 1px;
-        padding:20px;
-        width:70%;
-    }
+    <style type="text/css">
     
     
     </style>
@@ -75,24 +36,20 @@
       })();
     
     </script>
-    
+     
     </head>
     
-    <body>
+    <body onload="checkCookie()">
+     
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
               <div class="navbar-header">
                 <a class="navbar-brand" href="#">QR URL</a>
               </div>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Inicio</a></li>
-                <li><a href="#">Iniciar Sesion</a></li>
-                <li><a href="#">Escanear</a></li>
-                <li><a href="#">Reportarse Positivo</a></li>
+                <li class="active"><a href="index.html">Inicio</a></li>
+                <li><a href="reportar.html">Reportarse Positivo</a></li>
               </ul>
-              <!--
-              <button class="btn btn-danger navbar-btn">Button</button>
-              -->
             </div>
           </nav>
           
@@ -100,13 +57,21 @@
     <div id="main">
     <div id="header">
     <div id="mainbody">
+     <div>
+      <label for="fname">Ingrese su Carnet</label> <br>
+      <input type="text" id="Carnet" name="Carnet"><br>
+      <!--<button class="btn btn-primary navbar-btn" onclick="setCookie()" >Actualizar Carnet</button> -->
+     </div> 
+
     <table class="tsel" border="0" width="100%">
     <tr>
     <td valign="top" align="center" width="50%">
     <table class="tsel" border="0">
     <tr>
-    <td><img class="selector" id="webcamimg" src="vid.png" onclick="setwebcam()" align="left" /></td>
-    <td><img class="selector" id="qrimg" src="cam.png" onclick="setimg()" align="right"/></td></tr>
+    
+    <td><img class="selector" id="webcamimg" src="vid.png" style="visibility: hidden;" onclick="setwebcam()"  /></td>
+    <td><img class="selector" id="qrimg" src="cam.png" style="visibility: hidden;" onclick="setimg()" /></td></tr>
+    
     <tr><td colspan="2" align="center">
     <div id="outdiv">
     </div></td></tr>
@@ -114,7 +79,7 @@
     </td>
     </tr>
     <tr><td colspan="3" align="center">
-    <img src="down.png"/>
+    <img src="down.png" style="visibility: hidden;" />
     </td></tr>
     <tr><td colspan="3" align="center">
     <div id="result"></div>
@@ -122,6 +87,11 @@
     </table>
     <canvas id="qr-canvas" width="800" height="600"></canvas>
     <script type="text/javascript">load();</script>
+ 
+    <button class="btn btn-primary navbar-btn">Enviar Ubicacion</button>
+    <button class="btn btn-danger navbar-btn" onclick="location.reload();">Reiniciar app</button>
+    
+
     </body>
     
     </html>

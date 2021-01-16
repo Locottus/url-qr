@@ -1,12 +1,44 @@
-var numMotors = 4;
+var carnet = "";
 
-class Motor {
-    constructor(name, status) {
-      this.name = name;
-      this.status = status;
+function setCarnetText(){
+  document.getElementById("Carnet").value = carnet;
+}
+
+function setCookie(cname,cvalue,exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires=" + d.toGMTString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
     }
-  }[numMotors];
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
-
-var currentMotor = 1;
-console.log('starting')
+function checkCookie() {
+  var user=getCookie("username");
+  if (user != "") {
+    alert("Bienvenido nuevamente " + user);
+    carnet = user;
+    setCarnetText();
+  } else {
+     user = prompt("Ingrese su Carnet:","");
+     if (user != "" && user != null) {
+       setCookie("username", user, 30);
+       carnet = user;
+       setCarnetText();
+     }
+  }
+}
