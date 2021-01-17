@@ -27,18 +27,24 @@ function getCookie(cname) {
   return "";
 }
 
+function updateCookie(user,t){
+  setCookie("username", user, t);
+  carnet = user;
+  console.log('carnet actualizado ' + carnet );
+}
+
+
 function checkCookie() {
   var user=getCookie("username");
   if (user != "") {
-    alert("Bienvenido nuevamente " + user);
+    //alert("Bienvenido nuevamente " + user);
     carnet = user;
     setCarnetText();
   } else {
-     user = prompt("Ingrese su Carnet:","");
+     user = prompt("Ingrese su Carnet 'solo numeros':","");
      if (user != "" && user != null) {
-       setCookie("username", user, 30);
-       carnet = user;
-       setCarnetText();
+      updateCookie(user,30);
+      setCarnetText();
      }
   }
 }
