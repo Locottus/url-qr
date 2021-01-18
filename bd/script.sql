@@ -40,7 +40,7 @@ create table estados(
 
 insert into estados values (0,'no activo');
 insert into estados  values (1,'activo');
-insert into estados values  (2,'suspendido por enfermedad');
+insert into estados values  (2,'estudiante se ha reportado positivo covid por app web');
 insert into estados values  (3,'en cuarentena');
 insert into estados values  (4,'regreso de cuarentena');
 insert into estados values  (5,'en observacion');

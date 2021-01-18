@@ -31,7 +31,7 @@ const pool = new Pool({
 
  const postAsistencia = (request, response) => {
   var {  ubicacion, carnet } = request.body;
-let cadena = `insert into asistencia (ubicacion, carnet) values  ('${ubicacion}','${carnet}')`  ;
+let cadena = `insert into asistencia (ubicacion, carnet) values  ('${ubicacion}','${carnet}') `  ;
 console.log(cadena);
 pool.query(cadena, (error, results) => {
 if (error) {
@@ -42,11 +42,23 @@ response.status(201).send(`{'msg':'OK'}`);
 })
 }
 
+const postReporteCovid = (request, response) => {
+  var {  carnet, nota, estado } = request.body;
+let cadena = ` insert into contagiados (carnet,nota,estado ) values  ('${carnet}','${nota}','${estado}') `  ;
+console.log(cadena);
+pool.query(cadena, (error, results) => {
+if (error) {
+  response.status(500).send('{"msg":"' + error + '"}');
+}
+response.status(201).send(`{'msg':'OK'}`);
+})
+}
 
 
 module.exports = {
   getCarnet,
-  postAsistencia
+  postAsistencia,
+  postReporteCovid
 
   }
   
