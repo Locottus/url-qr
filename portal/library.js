@@ -1,4 +1,5 @@
 var carnet = "";
+var url ="https://arcgis-web.url.edu.gt/incyt/api/qr/";
 
 function setCarnetText(){
   document.getElementById("Carnet").value = carnet;
@@ -47,4 +48,31 @@ function checkCookie() {
       setCarnetText();
      }
   }
+}
+
+function enviarAsistencia(){
+  var ub = document.getElementById("result").innerText.split('|');
+  console.log(x[0]);
+  
+  var data = {
+    "carnet" : carnet,
+    "ubicacion" : ub,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: url + "grabaAsistencia",
+    data: data,
+    beforeSend: function() {
+
+            },
+                success: function (response) {
+                    console.log(response);
+                    alert('Asistencia enviada exitosamente.');
+            },
+            error: function () {
+                alert('error enviando asistencia al servidor');
+            }
+  });
+
 }
