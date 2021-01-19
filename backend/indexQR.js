@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const db = require('./queries');
+const db = require('./queriesQR');
 const port = 3006;
 
 app.use(bodyParser.json())

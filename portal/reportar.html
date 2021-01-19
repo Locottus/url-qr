@@ -9,7 +9,48 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
 
-    
+        <script>
+          var url ="https://arcgis-web.url.edu.gt/incyt/api/qr/";
+          var carnet = "";
+          
+          function checkCookieR() {
+            var user=getCookie("username");
+            if (user != "") {
+              setCarnetText();
+            } else {
+               user = prompt("Ingrese su Carnet 'solo numeros':","");
+               if (user != "" && user != null) {
+                updateCookie(user,30);
+                document.getElementById("lcarnet").value = user; 
+                carnet = user;
+                console.log(carnet);    
+              }
+            }
+          }
+          
+          function reporteCovidPositivo(){
+              var selectedText = document.getElementById("nota").value;
+              //var carnet = document.getElementById("lcarnet").value;
+              console.log(selectedText,carnet);
+            
+            
+            var data = {
+              "carnet" : carnet,
+              "nota" : selectedText,
+              "estado" : 2
+            };
+          
+            $.post(url + "reporteCovid", data, function(response){ 
+              if ("{'msg':'OK'}" === response){
+                alert("La informacion ha sido enviada. " );
+              }else
+                alert ("hubo un error al enviar el mensaje, por favor intente despues");
+                console.log(response);
+            });
+          
+          }
+              
+     </script>    
     <title>URL COVID QR</title>
 
 </head>
@@ -28,61 +69,3 @@
 </html>
 
 
-<script>
-var url ="https://arcgis-web.url.edu.gt/incyt/api/qr/";
-var carnet = "";
-
-function checkCookieR() {
-  var user=getCookie("username");
-  if (user != "") {
-    setCarnetText();
-  } else {
-     user = prompt("Ingrese su Carnet 'solo numeros':","");
-     if (user != "" && user != null) {
-      updateCookie(user,30);
-      document.getElementById("lcarnet").value = user; 
-      carnet = user;
-      console.log(carnet);    
-    }
-  }
-}
-
-function reporteCovidPositivo(){
-    var selectedText = document.getElementById("nota").value;
-    //var carnet = document.getElementById("lcarnet").value;
-    console.log(selectedText,carnet);
-  
-  
-  var data = {
-    "carnet" : carnet,
-    "nota" : selectedText,
-    "estado" : 2
-  };
-
-  $.post( + "reporteCovid", data, function(response){ 
-    if ("{'msg':'OK'}" === response){
-      alert("La informacion ha sido enviada. " );
-    }else
-      alert ("hubo un error al enviar el mensaje, por favor intente despues");
-      console.log(response);
-  });
-
-/*  $.ajax({
-    type: "POST",
-    url: url + "reporteCovid",
-    data: data,
-    beforeSend: function() {
-
-            },
-                success: function (response) {
-                    console.log(response);
-                    alert('Asistencia enviada exitosamente.');
-            },
-            error: function () {
-                alert('error enviando asistencia al servidor');
-            }
-  });
-*/
-}
-    
-</script>

@@ -1,13 +1,14 @@
 const Pool = require('pg').Pool
 
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: '172.17.250.12',
-//   database: 'covidqr',
-//   password: 'postgres2020!Incyt',
-//   port: 5432,
-// })
+ const pool = new Pool({
+   user: 'postgres',
+   host: '172.17.250.12',
+   database: 'covidqr',
+   password: 'postgres2020!Incyt',
+   port: 5432,
+ })
 
+/*
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
@@ -15,7 +16,7 @@ const pool = new Pool({
   password: 'Guatemala1',
   port: 5432,
 })
-
+*/
 
  const getCarnet = (request, response) => {
   const carnet = request.query.carnet;
@@ -30,6 +31,7 @@ const pool = new Pool({
 
 
  const postAsistencia = (request, response) => {
+   console.log('entering postAsistencia');
   var {  ubicacion, carnet } = request.body;
 let cadena = `insert into asistencia (ubicacion, carnet) values  ('${ubicacion}','${carnet}') `  ;
 console.log(cadena);
@@ -43,6 +45,7 @@ response.status(201).send(`{'msg':'OK'}`);
 }
 
 const postReporteCovid = (request, response) => {
+  console.log('entrando a post reporte covid');
   var {  carnet, nota, estado } = request.body;
 let cadena = ` insert into contagiados (carnet,nota,estado ) values  ('${carnet}','${nota}','${estado}') `  ;
 console.log(cadena);
