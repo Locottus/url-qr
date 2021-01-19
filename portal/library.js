@@ -52,13 +52,20 @@ function checkCookie() {
 
 function enviarAsistencia(){
   var ub = document.getElementById("result").innerText.split('|');
-  console.log(x[0]);
+  console.log(ub);
   
   var data = {
     "carnet" : carnet,
-    "ubicacion" : ub,
+    "ubicacion" : ub[0],
   };
-
+  $.post( + "grabaAsistencia", data, function(response){ 
+    if ("{'msg':'OK'}" === response){
+      alert("La informacion ha sido enviada. " );
+    }else
+      alert ("hubo un error al enviar el mensaje, por favor intente despues");
+      console.log(response);
+  });
+  /*
   $.ajax({
     type: "POST",
     url: url + "grabaAsistencia",
@@ -74,5 +81,5 @@ function enviarAsistencia(){
                 alert('error enviando asistencia al servidor');
             }
   });
-
+*/
 }
