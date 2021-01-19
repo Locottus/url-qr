@@ -24,8 +24,8 @@ img{
     background:white;
 }
 #v{
-    width:320px;
-    height:240px;
+    width:100%;
+    height:100%;
 }
 #qr-canvas{
     display:none;
@@ -57,18 +57,20 @@ img{
     cursor:pointer;
     margin-bottom:-5px;
 }
-#outdiv
+/*#outdiv
 {
-    width:320px;
-    height:240px;
+    width:50%;
+    height:50%;
     border: solid;
     border-width: 3px 3px 3px 3px;
-}
+}*/
+
 #result{
     border: solid;
     border-width: 1px 1px 1px 1px;
-    padding:20px;
-    width:70%;
+    padding:40px;
+    margin: 40px;
+    width:50%;
 }
 
 ul{

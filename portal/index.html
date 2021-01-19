@@ -60,7 +60,7 @@ function enviarAsistencia(){
     
     <body onload="checkCookie()">
      
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse" style="font-size:x-large;">
             <div class="container-fluid">
               <div class="navbar-header">
                 <a class="navbar-brand" href="#">QR URL</a>
@@ -76,10 +76,11 @@ function enviarAsistencia(){
     <div id="main">
     <div id="header">
     <div id="mainbody">
-     <div>
-      <label for="fname">Ingrese su Carnet</label> <br>
-      <input type="text" id="Carnet" name="Carnet"><br>
-      <button class="btn btn-primary navbar-btn" onclick="updateCookie()" >Actualizar Carnet</button> 
+     <div style="font-size:x-large;">
+      <!--<label for="fname">Ingrese su Carnet</label> <br> -->
+      <h3>Ingrese su Carnet</h3>
+      <input type="text" id="Carnet" name="Carnet" ><br>
+      <button class="btn btn-primary btn-lg navbar-btn" onclick="updateCookie()" >Actualizar Carnet</button> 
      </div> 
 
     <table class="tsel" border="0" width="100%">
@@ -107,8 +108,8 @@ function enviarAsistencia(){
     <canvas id="qr-canvas" width="800" height="600"></canvas>
     <script type="text/javascript">load();</script>
  
-    <button class="btn btn-primary navbar-btn" onclick="enviarAsistencia();" >Enviar Ubicacion</button>
-    <button class="btn btn-danger navbar-btn" onclick="location.reload();">Reiniciar Pagina</button>
+    <button class="btn btn-primary btn-lg navbar-btn" onclick="enviarAsistencia();" >Enviar Ubicacion</button>
+    <button class="btn btn-danger btn-lg navbar-btn" onclick="location.reload();">Reiniciar Pagina</button>
     
 
     </body>
