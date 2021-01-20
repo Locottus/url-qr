@@ -11,22 +11,7 @@
 
         <script>
           var url ="https://arcgis-web.url.edu.gt/incyt/api/qr/";
-          var carnet = "";
           
-          function checkCookieR() {
-            var user=getCookie("username");
-            if (user != "") {
-              setCarnetText();
-            } else {
-               user = prompt("Ingrese su Carnet 'solo numeros':","");
-               if (user != "" && user != null) {
-                updateCookie(user,30);
-                document.getElementById("lcarnet").value = user; 
-                carnet = user;
-                console.log(carnet);    
-              }
-            }
-          }
           
           function reporteCovidPositivo(){
               var selectedText = document.getElementById("nota").value;
@@ -54,17 +39,32 @@
     <title>URL COVID QR</title>
 
 </head>
-<body  onload="checkCookieR()" >
+<body  onload="checkCookie()" >
+  <nav class="navbar navbar-inverse" style="font-size: xx-large;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">QR URL</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Inicio</a></li>
+        <li><a href="reportar.html">Reportarse Positivo</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div id="main" style="font-size: xx-large;">
     <div style="margin: 20px; padding: 20px;">
         <h1>Reportarse COVID Positivo</h1>
-        <label id="lcarnet" name="lcarnet"></label><br>
+        <h3>Carnet</h3>
+        <input type="text" id="Carnet" name="Carnet" ><br>
         <label >Agregar nota al reportarse COVID</label><br>
-
         <textarea id="nota" name="nota" rows="5" cols="50">
         </textarea><br>
-        <button class="btn btn-primary navbar-btn" onclick="reporteCovidPositivo();">Notificar Covid</button>
+        <button class="btn btn-primary btn-lg navbar-btn" onclick="reporteCovidPositivo();">Notificar Covid</button>
     
     </div>
+  </div>
 </body>
 </html>
 
