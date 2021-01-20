@@ -1,71 +1,86 @@
 <html>
-    <head>
-        <script src="jquery-3.5.1.min.js"> </script>
-        <script src="library.js"> </script>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+  <head>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="library.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
 
-        <script>
-          var url ="https://arcgis-web.url.edu.gt/incyt/api/qr/";
-          
-          
-          function reporteCovidPositivo(){
-              var selectedText = document.getElementById("nota").value;
-              //var carnet = document.getElementById("lcarnet").value;
-              console.log(selectedText,carnet);
-            
-            
-            var data = {
-              "carnet" : carnet,
-              "nota" : selectedText,
-              "estado" : 2
-            };
-          
-            $.post(url + "reporteCovid", data, function(response){ 
-              if ("{'msg':'OK'}" === response){
-                alert("La informacion ha sido enviada. " );
-              }else
-                alert ("hubo un error al enviar el mensaje, por favor intente despues");
-                console.log(response);
-            });
-          
-          }
-              
-     </script>    
+    <script>
+      var url = "https://arcgis-web.url.edu.gt/incyt/api/qr/";
+
+      function reporteCovidPositivo() {
+        var selectedText = document.getElementById("nota").value;
+        //var carnet = document.getElementById("lcarnet").value;
+        console.log(selectedText, carnet);
+
+        var r = confirm("Esta seguro de enviar estado de COVID POSITIVO!");
+        if (r == true) {
+          var data = {
+            carnet: carnet,
+            nota: selectedText,
+            estado: 2,
+          };
+
+          $.post(url + "reporteCovid", data, function (response) {
+            if ("{'msg':'OK'}" === response) {
+              alert("La informacion ha sido enviada, se estaran comunicando con usted. ");
+            } else alert("hubo un error al enviar el mensaje, por favor intente despues");
+            console.log(response);
+          });
+          console.log( "You pressed OK!");
+        } else {
+          //txt = "You pressed Cancel!";
+        }
+      }
+    </script>
     <title>URL COVID QR</title>
-
-</head>
-<body  onload="checkCookie()" >
-  <nav class="navbar navbar-inverse" style="font-size: xx-large;">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">QR URL</a>
+  </head>
+  <body onload="checkCookie()">
+    <nav class="navbar navbar-inverse" style="font-size: xx-large">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">QR URL</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">Inicio</a></li>
+          <li><a href="reportar.html">Reportarse Positivo</a></li>
+        </ul>
       </div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">Inicio</a></li>
-        <li><a href="reportar.html">Reportarse Positivo</a></li>
-      </ul>
-    </div>
-  </nav>
+    </nav>
 
-
-  <div id="main" style="font-size: xx-large;">
-    <div style="margin: 20px; padding: 20px;">
+    <div id="main" style="font-size: xx-large">
+      <div style="margin: 20px; padding: 20px">
         <h1>Reportarse COVID Positivo</h1>
         <h3>Carnet</h3>
-        <input type="text" id="Carnet" name="Carnet" ><br>
-        <label >Agregar nota al reportarse COVID</label><br>
-        <textarea id="nota" name="nota" rows="5" cols="50">
-        </textarea><br>
-        <button class="btn btn-primary btn-lg navbar-btn" onclick="reporteCovidPositivo();">Notificar Covid</button>
-    
+        <input type="text" id="Carnet" name="Carnet" /><br />
+        <label>Agregar nota al reportarse COVID</label><br />
+        <textarea id="nota" name="nota" rows="5" cols="50"> </textarea><br />
+        <button
+          class="btn btn-primary btn-lg navbar-btn"
+          onclick="reporteCovidPositivo();"
+        >
+          Notificar Covid
+        </button>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
-
-
