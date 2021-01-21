@@ -22,7 +22,6 @@
     <script type="text/javascript">
 
 function enviarAsistencia(){
-  
   var ub = document.getElementById("result").innerText.split('|');
   console.log(ub);
   var r = confirm("Está seguro de enviar esta asistencia?");
@@ -45,6 +44,12 @@ function enviarAsistencia(){
         }
       }
 
+      async function getCarnet(){
+        var res;
+        res = await fetch(url + "/getCarnet?carnet=" + carnet);
+        var resp = await res.json();
+        console.log(resp);
+      }
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-24451557-1']);

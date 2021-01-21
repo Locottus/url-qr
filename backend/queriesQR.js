@@ -19,8 +19,10 @@ const pool = new Pool({
 */
 
  const getCarnet = (request, response) => {
+   console.log('finding carnet');
   const carnet = request.query.carnet;
-  var q = `select * from usuario where carnet = '${carnet}'  ` ;
+  var q = `select count(*) from usuarios where carnet = '${carnet}'  ` ;
+  console.log(q);
   pool.query(q, (error, results) => {
     if (error) {
       response.status(500).send('{"msg":"' + error + '"}');
