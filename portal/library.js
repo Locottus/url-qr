@@ -42,9 +42,9 @@ function checkCookie() {
     carnet = user;
     setCarnetText();
   } else {
-     user = prompt("Ingrese su Carnet 'solo numeros':","");
+     user = prompt("Ingrese su Carnet:","");
      if (user != "" && user != null) {
-      updateCookie(user,30);
+      updateCookie(user,180);
       setCarnetText();
      }
   }
