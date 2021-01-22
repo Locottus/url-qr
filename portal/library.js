@@ -44,7 +44,7 @@ function checkCookie() {
   } else {
      user = prompt("Ingrese su Carnet:","");
      if (user != "" && user != null) {
-      updateCookie(user,180);
+      updateCookie(user,30);
       setCarnetText();
      }
   }
