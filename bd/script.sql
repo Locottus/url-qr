@@ -33,6 +33,14 @@ create table estados(
 	descripcion text not null
 );
 
+create table ubicaciones2D(
+	ubicacion numeric unique,
+	x numeric not null,
+	y numeric not null,
+	z numeric null
+);
+
+
 
 insert into estados values (0,'no activo');
 insert into estados  values (1,'activo');
