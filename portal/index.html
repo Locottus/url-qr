@@ -23,11 +23,8 @@
 
 function enviarAsistencia(){
   var ub = document.getElementById("result").innerText.split('|');
-  c = document.getElementById("Carnet").value ;
   console.log(ub);
-  if (String(c).length > 0){
-    if (String(ub[0]).length > 0){
-      var r = confirm("Está seguro de enviar esta asistencia?");
+  var r = confirm("Está seguro de enviar esta asistencia?");
         if (r == true) {
 
           console.log('enviando asistencia');
@@ -37,8 +34,6 @@ function enviarAsistencia(){
           };
           console.log(data);
           
-          if ()
-
           $.post( url + "grabaAsistencia", data, function(response){ 
             if ("{'msg':'OK'}" === response){
               alert("La informacion ha sido enviada. " );
@@ -47,15 +42,7 @@ function enviarAsistencia(){
               //console.log(response);
           });
         }
-
-    }else{
-      alert('QR no valido');
-    }
-  }else
-  {
-    alert('Ingrese Carnet');
-  }
-}
+      }
 
       async function getCarnet(){
         var res;
@@ -130,7 +117,7 @@ function enviarAsistencia(){
     <script type="text/javascript">load();</script>
  
     <button class="btn btn-primary btn-lg navbar-btn" onclick="enviarAsistencia();" >Enviar Ubicacion</button>
-    <button class="btn btn-danger btn-lg navbar-btn" onclick="location.reload();">Reiniciar Pagina QR</button>
+    <button class="btn btn-danger btn-lg navbar-btn" onclick="location.reload();">Reiniciar Pagina</button>
     
 
     </body>
