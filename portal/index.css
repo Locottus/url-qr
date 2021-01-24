@@ -1,10 +1,11 @@
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+
 #reader {
     width: 640px;
-}
-@media(max-width: 600px) {
-	#reader {
-		width: 300px;
-	}
 }
 .empty {
     display: block;
