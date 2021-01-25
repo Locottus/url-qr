@@ -31,6 +31,40 @@ const pool = new Pool({
   })
  }
 
+ const getUbicaciones = (request, response) => {
+  console.log('returning ubicaciones');
+ var q = `select * from ubicaciones  ` ;
+ console.log(q);
+ pool.query(q, (error, results) => {
+   if (error) {
+     response.status(500).send('{"msg":"' + error + '"}');
+   }
+   response.status(200).json(results.rows);
+ })
+}
+
+const getRangoAsistencia = (request, response) => {
+  console.log('returning ubicaciones');
+ const ubicacion = request.query.ubicacion;
+ const fecha = request.query.fecha;
+ const h1 = request.query.h1;
+ const h2 = request.query.h2;
+ var q = `select * from ubicaciones  where ubicacion = '${ubicacion}'  
+    and fecha = '${fecha}' 
+    ` 
+ 
+ ;
+ console.log(q);
+ pool.query(q, (error, results) => {
+   if (error) {
+     response.status(500).send('{"msg":"' + error + '"}');
+   }
+   response.status(200).json(results.rows);
+ })
+}
+
+
+
 
  const postAsistencia = (request, response) => {
    console.log('entering postAsistencia');
@@ -63,7 +97,9 @@ response.status(201).send(`{'msg':'OK'}`);
 module.exports = {
   getCarnet,
   postAsistencia,
-  postReporteCovid
+  postReporteCovid,
+  getUbicaciones,
+  getRangoAsistencia
 
   }
   

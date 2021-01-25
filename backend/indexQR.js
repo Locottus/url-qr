@@ -25,6 +25,9 @@ app.get(ruta , (request, response) => {
 })
 
 app.get(ruta + 'getCarnet', db.getCarnet);
+app.get(ruta + 'getUbicaciones', db.getUbicaciones);
+app.get(ruta + 'getRangoAsistencia', db.getRangoAsistencia);
+
 app.post(ruta + 'grabaAsistencia', db.postAsistencia);
 app.post(ruta + 'reporteCovid', db.postReporteCovid);
 
