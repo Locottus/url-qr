@@ -44,14 +44,15 @@ const pool = new Pool({
 }
 
 const getRangoAsistencia = (request, response) => {
-  console.log('returning ubicaciones');
+ console.log('returning ubicaciones');
  const ubicacion = request.query.ubicacion;
  const fecha = request.query.fecha;
- const h1 = request.query.h1;
- const h2 = request.query.h2;
+ const horaInicial = request.query.horaInicial;
+ const horaFinal = request.query.horaFinal;
+ var f1 = fecha + ' ' + horaInicial;
+ var f2 = fecha + ' ' + horaFinal;
  var q = `select * from ubicaciones  where ubicacion = '${ubicacion}'  
-    and fecha = '${fecha}' 
-    ` 
+    and fecha between '${f1}' and   '${f2}'    ` 
  
  ;
  console.log(q);
