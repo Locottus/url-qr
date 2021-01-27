@@ -5,10 +5,7 @@
     
     <link rel="stylesheet" type="text/css" href="index.css" />
     <script src="jquery-3.5.1.min.js"> </script>
-
     <script src="html5-qrcode.min.js"></script>
-
-
     <script src="library.js"> </script>
 
 <!-- Latest compiled and minified CSS -->
@@ -22,7 +19,6 @@
 var estaciones = [];
 
 async function fetchData() {
-  //MESES
   var res;
   res = await fetch("https://arcgis-web.url.edu.gt/incyt/api/qr/getUbicaciones");
   this.estaciones = await res.json();
@@ -32,10 +28,7 @@ async function fetchData() {
 
 
 function cargaEstacion(s) {
-  
-  //console.log("carga estaciones");
   var select = document.getElementById(s);
-  //console.log(this.stations);
 
   var el = document.createElement("option");
   el.textContent = " "; // this.estaciones[i].estacion;
@@ -53,27 +46,20 @@ function cargaEstacion(s) {
 
 
 async function getDatea(){
-  console.log('renerating report');
+
   var u = document.getElementById("selectEstacion2").value;
   var fecha = document.getElementById("f1").value;
   var hora1 = document.getElementById("t1").value;
   var hora2 = document.getElementById("t2").value;
-  //console.log(u);
-  //console.log(fecha);
-  //console.log(hora1);
-  //console.log(hora2);
-  //var fecha1 = fecha + ' ' + hora1;
-  //var fecha2 = fecha + ' ' + hora2;
-  /*
-  https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=1&fecha=2021-01-24&horaInicial=01:00&horaFinal=23:00
-  */
   var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=${u}&fecha=${fecha}&horaInicial=${hora1}&horaFinal=${hora2}`;
-  console.log(url);
+
+  //console.log(url);
   var res;
   res = await fetch(url);
   var d = await res.json();
-  console.log(d);
+  //console.log(d);
   var resultContainer = document.getElementById('resultados');
+  resultContainer.innerHTML = "";
   for(var i = 0; i < d.length; d++){
     resultContainer.innerHTML  += `<div>${d[i].carnet}  ${d[i].fecha}</div>`;
   }
@@ -143,5 +129,5 @@ async function getDatea(){
 
 
 <script>
-
+  console.log('Herlich Gonzalez 2021');
 </script>
