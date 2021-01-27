@@ -19,32 +19,73 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
 
 <script type="text/javascript">
+var estaciones = [];
+
+async function fetchData() {
+  //MESES
+  var res;
+  res = await fetch("https://arcgis-web.url.edu.gt/incyt/api/qr/getUbicaciones");
+  this.estaciones = await res.json();
+  console.log(this.estaciones);
+  cargaEstacion('selectEstacion2')
+}
 
 
-      async function getCarnet(){
-        var res;
-        res = await fetch(url + "/getCarnet?carnet=" + carnet);
-        var resp = await res.json();
-        console.log(resp);
-      }
+function cargaEstacion(s) {
+  
+  //console.log("carga estaciones");
+  var select = document.getElementById(s);
+  //console.log(this.stations);
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-24451557-1']);
-      _gaq.push(['_trackPageview']);
-    
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    
-    </script>
+  var el = document.createElement("option");
+  el.textContent = " "; // this.estaciones[i].estacion;
+  el.value = " "; //this.estaciones[i].estacion;
+  select.appendChild(el);
+
+  for (var i = 0; i < this.estaciones.length; i++) {
+    var el = document.createElement("option");
+    el.textContent = this.estaciones[i].nombre;
+    el.value = this.estaciones[i].ubicacion;
+    select.appendChild(el);
+  }
+  //this.parms.estacion = this.estaciones[0].estacion;
+}
+
+
+async function getDatea(){
+  console.log('renerating report');
+  var u = document.getElementById("selectEstacion2").value;
+  var fecha = document.getElementById("f1").value;
+  var hora1 = document.getElementById("t1").value;
+  var hora2 = document.getElementById("t2").value;
+  //console.log(u);
+  //console.log(fecha);
+  //console.log(hora1);
+  //console.log(hora2);
+  //var fecha1 = fecha + ' ' + hora1;
+  //var fecha2 = fecha + ' ' + hora2;
+  /*
+  https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=1&fecha=2021-01-24&horaInicial=01:00&horaFinal=23:00
+  */
+  var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=${u}&fecha=${fecha}&horaInicial=${hora1}&horaFinal=${hora2}`;
+  console.log(url);
+  var res;
+  res = await fetch(url);
+  var d = await res.json();
+  console.log(d);
+  var resultContainer = document.getElementById('resultados');
+  for(var i = 0; i < d.length; d++){
+    resultContainer.innerHTML  += `<div>${d[i].carnet}  ${d[i].fecha}</div>`;
+  }
+
+}
+
+</script>
      
     </head>
     
-      <body onload="myFunction()">
-     
-        <nav class="navbar navbar-inverse" style="font-size: xx-large;">
+      <body onload="fetchData()">
+        <nav class="navbar navbar-inverse " style="font-size: xx-large;">
             <div class="container-fluid">
               <div class="navbar-header">
                 <a class="navbar-brand" href="#">QR URL</a>
@@ -52,47 +93,53 @@
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Inicio</a></li>
                 <li><a href="reportar.html">Reportarse Positivo</a></li>
+                <li><a href="asistencia.html">Asistencia</a></li>
               </ul>
             </div>
           </nav>
-          
 
-    <div id="main" style="font-size: xx-large;">
+
+    <div id="main fs20" >
       <h1>Reporte de asistencia</h1>
 
-      <div>
-        <label>Seleccione Localidad</label><br>
-        <select class="custom-select" id="ubicacion">
-           <option selected>Choose...</option> 
+
+      <div class="input-group mb-3 center">
+        <div class="input-group-append">
+          <label class="input-group-text" for="selectEstacion2"
+            >Ubicacion</label
+          >
+        </div>
+        <select class="custom-select" id="selectEstacion2">
+          <!-- <option selected>Choose...</option> -->
         </select>
-
       </div>
-
 
       <div>
         <label>Seleccione fecha a generar</label><br>
-        <input type="date" id="f1">
+        <input type="date" id="f1" name="f1">
       </div>
       
       <div>
         <label>Seleccione hora Inicial</label><br>
-        <input type="time" id="t1">
+        <input type="time" id="t1" name="t1">
       </div>
 
       <div>
         <label>Seleccione hora Final</label><br>
-        <input type="time" id="t2">
+        <input type="time" id="t2" name="t2">
       </div>
       
      </div> 
 
 
+    <button class="btn btn-primary  navbar-btn" onclick="getDatea()" >Generar reporte</button>
+     <br><br>
+    <div id = "resultados"> </div>
 
 
- 
-    <button class="btn btn-primary btn-lg navbar-btn" onclick="alert('working');" >Generar reporte</button>
-    </body>
-    </html>
+  </body>
+
+  </html>
 
 
 <script>
