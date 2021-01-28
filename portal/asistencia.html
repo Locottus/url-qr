@@ -19,6 +19,7 @@
 var estaciones = [];
 //var arreglo = [];
 var campos = ["ubicacion","nombre","carnet","fecha"];
+var arreglo;
 
 async function fetchData() {
   var res;
@@ -51,7 +52,8 @@ function createTableColumns(arreglo, campos) {
   //this.arreglo = arreglo;
   //this.campos = campos;
   console.log("creando columnas con datos de tabla***************");
-   console.log(arreglo);
+  this.arreglo = arreglo;
+  console.log(arreglo);
   console.log(this.campos);
 
   var table = document.getElementById("tableInfo");
@@ -174,6 +176,7 @@ async function getDatea(){
       </div>
     </section>
 
+    <i class="fa fa-3x fa-align-center fa-file" aria-hidden="true" onclick="download_csv()"  ></i>&nbsp;&nbsp;&nbsp;&nbsp;
 
   </body>
 
@@ -182,4 +185,49 @@ async function getDatea(){
 
 <script>
   //console.log('Herlich Gonzalez 2021');
+
+  //llamar a esta func para crear csv
+  function download_csv() {
+  var archivo = prompt(
+    "Ingrese el nombre del archivo a salvar:",
+    "archivo_datos.csv"
+  );
+  if (archivo == null || archivo == "") {
+    console.log("User cancelled the prompt.");
+  } else {
+    //DOWNLOADING FILE
+    //archivo = archivo.replace(/ /g,'');//removing white spaces from file name
+    if (archivo.toUpperCase().indexOf(".CSV") == -1) {
+      archivo = archivo + ".csv";
+    }
+    console.log(archivo);
+    console.log(campos);
+    console.log(arreglo);
+    //here i create the csv.
+
+    var csv = "";
+
+    //set titles
+    for (var i = 0; i < campos.length; i++) {
+      csv += campos[i] + ",";
+    }
+    //set data
+    for (var i = 0; i < arreglo.length; i++) {
+      csv += "\n";
+      for (var j = 0; j < campos.length; j++) {
+        csv += arreglo[i][campos[j]] + ",";
+      }
+    }
+    csv += "\n";
+
+    console.log(csv);
+    var hiddenElement = document.createElement("a");
+    hiddenElement.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
+    hiddenElement.target = "_blank";
+    hiddenElement.download = archivo; //"people.csv";
+    hiddenElement.click();
+  }
+}
+
+
 </script>

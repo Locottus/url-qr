@@ -111,4 +111,21 @@ insert into ubicaciones (ubicacion, nombre) values (46,'Informática y sistemas 
 insert into ubicaciones (ubicacion, nombre) values (47,'Informática y sistemas Comunicaciones y circuitos T-212');
 insert into ubicaciones (ubicacion, nombre) values (48,'Informática y sistemas Computación T-203');
 insert into ubicaciones (ubicacion, nombre) values (49,'Informática y sistemas Redes y telecomunicaciones T-216');
+insert into ubicaciones (ubicacion, nombre) values (50,'T-123');
+insert into ubicaciones (ubicacion, nombre) values (51,'T-121A');
+insert into ubicaciones (ubicacion, nombre) values (52,'T-120A');
+insert into ubicaciones (ubicacion, nombre) values (53,'T-120B');
+insert into ubicaciones (ubicacion, nombre) values (54,'T-120C');
+insert into ubicaciones (ubicacion, nombre) values (55,'T-122A');
+insert into ubicaciones (ubicacion, nombre) values (56,'T-122B');
+insert into ubicaciones (ubicacion, nombre) values (57,'T-124');
+insert into ubicaciones (ubicacion, nombre) values (58,'T-125');
+insert into ubicaciones (ubicacion, nombre) values (59,'T-206B');
+insert into ubicaciones (ubicacion, nombre) values (60,'T-217C');
+insert into ubicaciones (ubicacion, nombre) values (61,'T-119');
+insert into ubicaciones (ubicacion, nombre) values (62,'G-301');
+insert into ubicaciones (ubicacion, nombre) values (63,'T-110A');
+insert into ubicaciones (ubicacion, nombre) values (64,'T-207');
+insert into ubicaciones (ubicacion, nombre) values (65,'T-208');
+
 
