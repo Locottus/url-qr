@@ -17,6 +17,8 @@
 
 <script type="text/javascript">
 var estaciones = [];
+//var arreglo = [];
+var campos = ["carnet","ubicacion","fecha"];
 
 async function fetchData() {
   var res;
@@ -45,6 +47,41 @@ function cargaEstacion(s) {
 }
 
 
+function createTableColumns(arreglo, campos) {
+  //this.arreglo = arreglo;
+  //this.campos = campos;
+  console.log("creando columnas con datos de tabla***************");
+   console.log(arreglo);
+  console.log(this.campos);
+
+  var table = document.getElementById("tableInfo");
+  var h1 = "\n<tr>\n";
+  for (var i = 0; i < campos.length; i++) {
+    h1 = h1 + " <th>" + campos[i] + "</th> \n";
+  }
+
+  h1 = h1 + "\n</tr>\n";
+  console.log(h1);
+
+  var h2 = "";
+  for (var i = 0; i < arreglo.length; i++) {
+    h2 = h2 + "<tr>\n";
+    for (var j = 0; j < campos.length; j++) {
+      h2 = h2 + " <td>" + arreglo[i][campos[j]] + "</td>\n";
+    }
+    h2 = h2 + "</tr>\n";
+  }
+  //console.log(h2);
+  var tableTail = ` 
+</table>
+`;
+  //console.log(h2);
+  table.innerHTML = h1 + h2 + tableTail;
+  console.log("creando columnas con datos de tabla***************");
+}
+
+
+
 async function getDatea(){
 
   var u = document.getElementById("selectEstacion2").value;
@@ -54,16 +91,25 @@ async function getDatea(){
   var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=${u}&fecha=${fecha}&horaInicial=${hora1}&horaFinal=${hora2}`;
 
   //console.log(url);
+  var arreglo = [];
   var res;
   res = await fetch(url);
   var d = await res.json();
-  //console.log(d);
+  console.log('d');
+  console.log(d);
   var resultContainer = document.getElementById('resultados');
-  resultContainer.innerHTML = "";
-  for(var i = 0; i < d.length; d++){
-    resultContainer.innerHTML  += `<div>${d[i].carnet}  ${d[i].fecha}</div>`;
-  }
+  //resultContainer.innerHTML = "";
+  for(var i = 0; i < d.length ; i++){
+    arreglo.push(d[i].carnet,d[i].ubicacion,d[i].fecha);
+    console.log(d[i]);
+    //resultContainer.innerHTML  += `<div>${d[i].carnet}  ${d[i].fecha}</div>`;
 
+  }
+  //resultContainer.innerHTML  += `<div>${d[i].carnet}  ${d[i].fecha}</div>`;
+
+  //console.log('arreglo');
+  //console.log(arreglo);
+  createTableColumns(d,this.campos);
 }
 
 </script>
@@ -122,6 +168,12 @@ async function getDatea(){
      <br><br>
     <div id = "resultados"> </div>
 
+    <section>
+      <div>
+        <table id="tableInfo" class="table table-striped"></table>
+      </div>
+    </section>
+
 
   </body>
 
@@ -129,5 +181,5 @@ async function getDatea(){
 
 
 <script>
-  console.log('Herlich Gonzalez 2021');
+  //console.log('Herlich Gonzalez 2021');
 </script>
