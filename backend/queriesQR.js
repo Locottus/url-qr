@@ -44,7 +44,7 @@ const pool = new Pool({
 }
 
 const getRangoAsistencia = (request, response) => {
- console.log('returning ubicaciones');
+ console.log('returning asistencia de carnet por ubicacion');
  const ubicacion = request.query.ubicacion;
  const fecha = request.query.fecha;
  const horaInicial = request.query.horaInicial;
@@ -53,11 +53,10 @@ const getRangoAsistencia = (request, response) => {
  var f2 = fecha + ' ' + horaFinal;
  var q = `select ubicaciones.*,carnet,fecha 
           from asistencia, ubicaciones
-          where ubicacion = '${ubicacion}'  
+          where ubicaciones.ubicacion = '${ubicacion}'  
           and fecha between '${f1}' and   '${f2}'    
           and asistencia.ubicacion = ubicaciones.ubicacion 
-          ` 
- 
+        ` 
  ;
  console.log(q);
  pool.query(q, (error, results) => {
