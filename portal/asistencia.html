@@ -2,6 +2,34 @@
 <html>
     <head>
     <title>URL COVID QR REPORTE</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        margin-left:auto;
+        margin-right:auto;
+        padding: 10px;
+        width: 30%;
+        text-align:center;
+            }
+
+            td, th {
+
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+      }
+            /*
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }*/
+      </style>
+
     <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
@@ -102,10 +130,11 @@ function createTableColumns(arreglo, campos) {
 async function getDatea(){
 
   var u = document.getElementById("selectEstacion2").value;
-  var fecha = document.getElementById("f1").value;
+  var fecha1 = document.getElementById("f1").value;
+  var fecha2 = document.getElementById("f2").value;
   var hora1 = document.getElementById("t1").value;
   var hora2 = document.getElementById("t2").value;
-  var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=${u}&fecha=${fecha}&horaInicial=${hora1}&horaFinal=${hora2}`;
+  var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=${u}&fecha1=${fecha1}&fecha2=${fecha2}&horaInicial=${hora1}&horaFinal=${hora2}`;
 
   //console.log(url);
   var arreglo = [];
@@ -141,7 +170,7 @@ async function getDatea(){
               </div>
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Inicio</a></li>
-                <li><a href="reportar.html">Reportarse Positivo</a></li>
+                
                 
               </ul>
             </div>
@@ -164,19 +193,51 @@ async function getDatea(){
       </div>
 
       <div>
-        <label>Seleccione fecha a generar</label><br>
-        <input type="date" id="f1" name="f1">
+        <table>
+          <tr>
+            <th>Fecha Inicial</th>
+            <th>Fecha Final</th>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <!--<label>Seleccione fecha Inicial a generar</label><br>-->
+                <input type="date" id="f1" name="f1">
+              </div>
+            </td>
+            <td>
+              <div>
+                <!--<label>Seleccione fecha final a generar</label><br>-->
+                <input type="date" id="f2" name="f2">
+              </div>
+              
+            </td>
+          </tr>
+        </table>
       </div>
+<br>
+      <table>
+        <tr>
+          <th>Hora Inicial</th>
+          <th>Hora Final</th>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <!--<label>Seleccione hora Inicial</label><br>-->
+              <input type="time" id="t1" name="t1">
+            </div>
       
-      <div>
-        <label>Seleccione hora Inicial</label><br>
-        <input type="time" id="t1" name="t1">
-      </div>
-
-      <div>
-        <label>Seleccione hora Final</label><br>
-        <input type="time" id="t2" name="t2">
-      </div>
+          </td>
+          <td>
+            <div>
+              <!--<label>Seleccione hora Final</label><br>-->
+              <input type="time" id="t2" name="t2">
+            </div>
+      
+          </td>
+        </tr>
+      </table>
       
      </div> 
 

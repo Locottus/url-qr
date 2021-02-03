@@ -33,7 +33,7 @@ const pool = new Pool({
 
  const getUbicaciones = (request, response) => {
   console.log('returning ubicaciones');
- var q = `select * from ubicaciones  ` ;
+ var q = `select * from ubicaciones order by nombre ` ;
  console.log(q);
  pool.query(q, (error, results) => {
    if (error) {
@@ -46,11 +46,12 @@ const pool = new Pool({
 const getRangoAsistencia = (request, response) => {
  console.log('returning asistencia de carnet por ubicacion');
  const ubicacion = request.query.ubicacion;
- const fecha = request.query.fecha;
+ const fecha1 = request.query.fecha1;
+ const fecha2 = request.query.fecha2;
  const horaInicial = request.query.horaInicial;
  const horaFinal = request.query.horaFinal;
- var f1 = fecha + ' ' + horaInicial;
- var f2 = fecha + ' ' + horaFinal;
+ var f1 = fecha1 + ' ' + horaInicial;
+ var f2 = fecha2 + ' ' + horaFinal;
  var q = `select ubicaciones.*,carnet,fecha 
           from asistencia, ubicaciones
           where ubicaciones.ubicacion = '${ubicacion}'  
