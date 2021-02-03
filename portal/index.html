@@ -93,7 +93,7 @@ function enviarAsistencia(){
               </div>
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Inicio</a></li>
-                <li><a href="reportar.html">Reportarse Positivo</a></li>
+                <!--<li><a href="reportar.html">Reportarse Positivo</a></li>> -->
               </ul>
             </div>
           </nav>
@@ -130,13 +130,13 @@ function enviarAsistencia(){
     <img src="down.png" style="visibility: hidden;" />
     </td></tr>
     <tr><td colspan="3" align="center">
-    <div id="result"></div>
+    <div id="result" class="fs40"></div>
     </td></tr>
     </table>
-    <canvas id="qr-canvas" width="800" height="600"></canvas>
+    <canvas id="qr-canvas" width="400" height="300"></canvas>
     <script type="text/javascript">load();</script>
     <div>
-      <label id="resultado"></label>
+      <label id="resultado" class="fs40"></label>
     </div>
 
     <button class="btn btn-primary btn-lg navbar-btn" onclick="enviarAsistencia();" >Enviar Ubicacion</button>
