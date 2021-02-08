@@ -136,7 +136,7 @@ async function getDatea(){
   var hora2 = document.getElementById("t2").value;
   var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=${u}&fecha1=${fecha1}&fecha2=${fecha2}&horaInicial=${hora1}&horaFinal=${hora2}`;
 
-  //console.log(url);
+  console.log(url);
   var arreglo = [];
   var res;
   res = await fetch(url);
