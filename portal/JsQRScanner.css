@@ -1,6 +1,6 @@
 .qrscanner video {
-  max-width: 95%;
-  max-height: 75%;
+  max-width: 90%;
+  max-height: 70%;
 }
 
 .row-element-set {
@@ -21,7 +21,7 @@
 body
 {
   background-color:#052a51;
-  margin: 50px;
+  margin: 70px;
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -35,7 +35,7 @@ body
 
 .form-field-input
 {
- width: 100%; 
+ width: 90%; 
 }
 
     .error_message {
