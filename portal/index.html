@@ -1,29 +1,36 @@
-<!DOCTYPE html>
+
+<!doctype html>
+
 <html>
-    <head>
+  <head>
+    <script src="jquery-3.5.1.min.js"> </script>
+    <script src="library.js"> </script>    
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+
+  <link type="text/css" rel="stylesheet" href="JsQRScanner.css">
+
+
     <title>URL COVID QR</title>
     
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <!--                                           -->
+    <!-- This script loads your compiled module.   -->
+    <script type="text/javascript" src="jsqrscanner.nocache.js"></script>
+  </head>
+  <body>
 
-    <script src="jquery-3.5.1.min.js"> </script>
-    <script src="library.js"> </script>
-    
-    <script type="text/javascript" src="llqrcode.js"></script>
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-    <script type="text/javascript" src="webqr.js"></script>
+    <div class="row-element-set row-element-set-QRScanner">
+    </div>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
-
-    <script type="text/javascript">
+    <script> 
 
 function enviarAsistencia(){
   var c = document.getElementById("Carnet").value;
-  var ub = document.getElementById("result").innerText.split('|');
+  var ub = document.getElementById("scannedTextMemo").value.split('|');
   console.log(c);
   console.log(ub);
   if (String(c).length > 0){
@@ -48,9 +55,11 @@ function enviarAsistencia(){
               console.log('INFO ENVIADA CORRECTAMENTE!');
               //document.getElementById("btnEnviar").disabled = true;
               //location.reload();
-            }else
+            }else{
               alert ("hubo un error al enviar el mensaje, por favor intente despues");
               console.log("error enviando la informacion de asistencia");
+
+            }
 
           });
         }
@@ -62,87 +71,143 @@ function enviarAsistencia(){
     
  }
 
-      async function getCarnet(){
-        var res;
-        res = await fetch(url + "/getCarnet?carnet=" + carnet);
-        var resp = await res.json();
-        console.log(resp);
+
+    if (location.protocol != 'https:') { 
+      document.getElementById('secure-connection-message').style='display: block';
       }
+      </script>  
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-24451557-1']);
-      _gaq.push(['_trackPageview']);
-    
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    
-    </script>
-     
-    </head>
-    
-    <!--<body onload="checkCookie()"> -->
-      <body>
-     
-        <nav class="navbar navbar-inverse" style="font-size: xx-large;">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="#">QR URL</a>
-              </div>
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Inicio</a></li>
-                <!--<li><a href="reportar.html">Reportarse Positivo</a></li>> -->
-              </ul>
-            </div>
-          </nav>
-          
+      
 
-    <div id="main" style="font-size: xx-large;">
-    <div id="header">
-    <div id="mainbody">
-     <div >
-      <!--<label for="fname">Ingrese su Carnet</label> <br> -->
-      <h3>Ingrese su Carnet</h3>
-      <input type="text" id="Carnet" name="Carnet" ><br><br>
-      <!--
-      <button class="btn btn-primary btn-lg navbar-btn" onclick="updateCookie()" >Actualizar Carnet</button> 
-      --> 
-    </div> 
-
-    <table class="tsel" border="0" width="100%">
-    <tr>
-    <td valign="top" align="center" width="50%">
-    <table class="tsel" border="0">
-    <tr>
-    
-    <td><img class="selector" id="webcamimg" src="vid.png" style="visibility: hidden;" onclick="setwebcam()"  /></td>
-    <td><img class="selector" id="qrimg" src="cam.png" style="visibility: hidden;" onclick="setimg()" /></td></tr>
-    
-    <tr><td colspan="2" align="center">
-    <div id="outdiv">
-    </div></td></tr>
-    </table>
-    </td>
-    </tr>
-    <tr><td colspan="3" align="center">
-    <img src="down.png" style="visibility: hidden;" />
-    </td></tr>
-    <tr><td colspan="3" align="center">
-    <div id="result" class="fs40"></div>
-    </td></tr>
-    </table>
-    <canvas id="qr-canvas" width="400" height="300"></canvas>
-    <script type="text/javascript">load();</script>
-    <div>
-      <label id="resultado" class="fs40"></label>
+<div id="main" style="font-size: xx-large;">
+  <div id="header">
+  <div id="mainbody">
+   <div >
+    <div class="gwt-Label form-field-caption">
+      Ingrese su Carnet
     </div>
 
-    <button class="btn btn-primary btn-lg navbar-btn" onclick="enviarAsistencia();" >Enviar Ubicacion</button>
-    <button class="btn btn-danger btn-lg navbar-btn" onclick="location.reload();">Reiniciar Pagina</button>
-    
+    <input type="text" id="Carnet" name="Carnet" ><br><br>
 
-    </body>
+
+
+      <div class="row-element">
+        <div class="qrscanner" id="scanner">
+        </div>
+      </div>
+      <div class="row-element">
+        <div class="form-field form-field-memo">
+          <div class="form-field-caption-panel">
+            <div class="gwt-Label form-field-caption">
+              QR Escaneado
+            </div>
+          </div>
+          <div class="FlexPanel form-field-input-panel">
+            <textarea id="scannedTextMemo" name="scannedTextMemo" class="textInput form-memo form-field-input textInput-readonly" rows="3" readonly>
+            </textarea>
+          </div>
+        </div>
+        <div class="form-field form-field-memo">
+          <div class="form-field-caption-panel">
+            <div class="gwt-Label form-field-caption">
+              Historico 
+            </div>
+          </div>
+          <div class="FlexPanel form-field-input-panel">
+            <textarea id="scannedTextMemoHist" class="textInput form-memo form-field-input textInput-readonly" value="" rows="6" readonly>
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label id="resultado" class="fs40"></label>
+      </div>
+  
+      <button class="btn btn-primary btn-lg navbar-btn" onclick="enviarAsistencia();" >Enviar Ubicacion</button>
+      <button class="btn btn-danger btn-lg navbar-btn" onclick="location.reload();">Reiniciar Pagina</button>
+  
+    </div>
+
+
+  </div> 
+
+
+  <script type="text/javascript">
+    function onQRCodeScanned(scannedText)
+    {
+    	var scannedTextMemo = document.getElementById("scannedTextMemo");
+    	if(scannedTextMemo)
+    	{
+    		scannedTextMemo.value = scannedText;
+    	}
+    	var scannedTextMemoHist = document.getElementById("scannedTextMemoHist");
+    	if(scannedTextMemoHist)
+    	{
+    		scannedTextMemoHist.value = scannedTextMemoHist.value + '\n' + scannedText;
+    	}
+    }
     
-    </html>
+    function provideVideo()
+    {
+        var n = navigator;
+
+        if (n.mediaDevices && n.mediaDevices.getUserMedia)
+        {
+          return n.mediaDevices.getUserMedia({
+            video: {
+              facingMode: "environment"
+            },
+            audio: false
+          });
+        } 
+        
+        return Promise.reject('Your browser does not support getUserMedia');
+    }
+
+    function provideVideoQQ()
+    {
+        return navigator.mediaDevices.enumerateDevices()
+        .then(function(devices) {
+            var exCameras = [];
+            devices.forEach(function(device) {
+            if (device.kind === 'videoinput') {
+              exCameras.push(device.deviceId)
+            }
+         });
+            
+            return Promise.resolve(exCameras);
+        }).then(function(ids){
+            if(ids.length === 0)
+            {
+              return Promise.reject('Could not find a webcam');
+            }
+            
+            return navigator.mediaDevices.getUserMedia({
+                video: {
+                  'optional': [{
+                    'sourceId': ids.length === 1 ? ids[0] : ids[1]//this way QQ browser opens the rear camera
+                    }]
+                }
+            });        
+        });                
+    }
+    
+    //this function will be called when JsQRScanner is ready to use
+    function JsQRScannerReady()
+    {
+        //create a new scanner passing to it a callback function that will be invoked when
+        //the scanner succesfully scan a QR code
+        var jbScanner = new JsQRScanner(onQRCodeScanned);
+        //var jbScanner = new JsQRScanner(onQRCodeScanned, provideVideo);
+        //reduce the size of analyzed image to increase performance on mobile devices
+        jbScanner.setSnapImageMaxSize(300);
+    	var scannerParentElement = document.getElementById("scanner");
+    	if(scannerParentElement)
+    	{
+    	    //append the jbScanner to an existing DOM element
+    		jbScanner.appendTo(scannerParentElement);
+    	}        
+    }
+  </script>    
+  </body>
+</html>
