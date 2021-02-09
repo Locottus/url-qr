@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QR URL</string>
+    <string name="carnet_MSG">Ingrese su Numero de Carnet</string>
+    <string name="boton_MSG">Enviar Asistencia</string>
 </resources>
