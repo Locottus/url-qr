@@ -3,6 +3,11 @@
   max-height: 70%;
 }
 
+h2{
+  margin:20px;
+  color: white;
+}
+
 .row-element-set {
   display: flex;
   flex-direction: column;
