@@ -20,14 +20,17 @@
 
 body
 {
+  background-color:#052a51;
   margin: 50px;
   padding: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .form-field-caption {
   font-weight: bold;
+  color: white;
 }
 
 .form-field-input
