@@ -1,10 +1,33 @@
+.colorWhite{
+  color:white;
+}
+
+
+.fs20{
+  font-size: 20px;
+}
+
+
+.fs40{
+  font-size: 40px;
+}
+
+.fs30{
+  font-size: 40px;
+}
+
+
 .qrscanner video {
-  max-width: 90%;
+  max-width: 80%;
   max-height: 70%;
 }
 
+text{
+  margin-left: 15px;
+}
+
 h2{
-  margin:20px;
+  margin:10px;
   color: white;
 }
 
@@ -43,10 +66,3 @@ body
  width: 90%; 
 }
 
-    .error_message {
-       color: red; 
-       background-color: white; 
-       border: 1px solid red; 
-       padding: 4px; 
-       font-family: sans-serif 
-    }

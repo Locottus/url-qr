@@ -12,7 +12,7 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
 
-  <link type="text/css" rel="stylesheet" href="JsQRScanner.css">
+  <link type="text/css" rel="stylesheet" href="style.css">
 
 
     <title>URL COVID QR</title>
@@ -33,11 +33,9 @@
     <script type="text/javascript" src="jsqrscanner.nocache.js"></script>
   </head>
   <body>
+    
 
-    <div class="row-element-set row-element-set-QRScanner">
-    </div>
-
-    <script> 
+<script> 
 
 function enviarAsistencia(){
   var c = document.getElementById("Carnet").value;
@@ -49,7 +47,7 @@ function enviarAsistencia(){
       alert('codigo QR no valido');
 
     }else{
-      var r = confirm("Está seguro de enviar esta asistencia?");
+      var r = confirm("Esta seguro de enviar esta asistencia?");
         if (r == true) {
 
           console.log('enviando asistencia');
@@ -79,68 +77,59 @@ function enviarAsistencia(){
   }else{
     alert('ingrese un carnet valido');
   }
-    
- }
-
+}
 
     if (location.protocol != 'https:') { 
       document.getElementById('secure-connection-message').style='display: block';
       }
-      </script>  
+</script>  
 
       
 
 <div id="main" style="font-size: xx-large;">
-  <div id="header">
-  <div id="mainbody">
+  <div >
+  <div >
    <div >
+     <div>
+      <img id="tec-image"  src="TEC.png" alt="tec logo" style="size: 70%;">
+     </div>
     <h2>
       Ingrese su Carnet
     </h2>
-      
-    
-
     <input type="text" id="Carnet" name="Carnet" ><br><br>
-
-
-
-      <div class="row-element">
+      
+    <div >
         <div class="qrscanner" id="scanner">
         </div>
       </div>
-      <div class="row-element">
-        <div class="form-field form-field-memo">
-          <div class="form-field-caption-panel">
+      
+        <div >
             <h2>
               QR Escaneado
-
             </h2>
-                          
-          </div>
-          <div class="FlexPanel form-field-input-panel">
-            <textarea id="scannedTextMemo" name="scannedTextMemo" class="textInput form-memo form-field-input textInput-readonly" rows="3" readonly>
+          <div >
+            <textarea id="scannedTextMemo" name="scannedTextMemo"  rows="2" readonly>
             </textarea>
           </div>
         </div>
-        <div class="form-field form-field-memo">
-          <div class="form-field-caption-panel">
+        
+        <div style="display: none;">
             <h2>
               Historico 
             </h2>
-          </div>
-          <div class="FlexPanel form-field-input-panel">
-            <textarea id="scannedTextMemoHist" class="textInput form-memo form-field-input textInput-readonly" value="" rows="6" readonly>
-            </textarea>
+          <div >
+            <textarea id="scannedTextMemoHist" class="textInput form-memo form-field-input textInput-readonly" value="" rows="6" readonly> </textarea>
           </div>
         </div>
-      </div>
+      
       <div>
-        <label id="resultado" class="fs40"></label>
+        <label id="resultado" class="fs40 colorWhite"></label>
       </div>
-  
       <button class="btn btn-primary btn-lg navbar-btn" onclick="enviarAsistencia();" >Enviar Ubicacion</button>
       <button class="btn btn-danger btn-lg navbar-btn" onclick="location.reload();">Reiniciar Pagina</button>
       <br>
+      <img src="VRIP.png" alt="VRIP logo">
+      <img src="Incyt.png" alt="Incyt logo">
     </div>
 
 
