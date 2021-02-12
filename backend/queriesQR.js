@@ -52,7 +52,7 @@ const getRangoAsistencia = (request, response) => {
  const horaFinal = request.query.horaFinal;
  var f1 = fecha1 + ' ' + horaInicial;
  var f2 = fecha2 + ' ' + horaFinal;
- var q = `select ubicaciones.*,carnet,fecha 
+ var q = `select ubicaciones.*,carnet, cast(fecha as text) 
           from asistencia, ubicaciones
           where ubicaciones.ubicacion = '${ubicacion}'  
           and fecha between '${f1}' and   '${f2}'    
