@@ -68,7 +68,31 @@ const getRangoAsistencia = (request, response) => {
  })
 }
 
-
+const getAsistenciaTotal = (request, response) => {
+  console.log('returning asistencia de carnet por ubicacion total');
+  const fecha1 = request.query.fecha1;
+  const fecha2 = request.query.fecha2;
+  const horaInicial = request.query.horaInicial;
+  const horaFinal = request.query.horaFinal;
+  var f1 = fecha1 + ' ' + horaInicial;
+  var f2 = fecha2 + ' ' + horaFinal;
+  var q = `select count(*), u.nombre, fecha::DATE
+            from asistencia a, ubicaciones u
+            where a.ubicacion = u.ubicacion
+            and fecha between '${f1}' and   '${f2}'    
+            group by u.nombre, fecha::DATE
+   
+         ` 
+  ;
+  console.log(q);
+  pool.query(q, (error, results) => {
+    if (error) {
+      response.status(500).send('{"msg":"' + error + '"}');
+    }
+    response.status(200).json(results.rows);
+  })
+ }
+ 
 
 
  const postAsistencia = (request, response) => {
@@ -104,7 +128,8 @@ module.exports = {
   postAsistencia,
   postReporteCovid,
   getUbicaciones,
-  getRangoAsistencia
+  getRangoAsistencia,
+  getAsistenciaTotal
 
   }
   
