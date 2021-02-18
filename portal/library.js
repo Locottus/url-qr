@@ -53,3 +53,24 @@ function checkCookie() {
   
 
 
+
+function drawGraphic(){
+  var barChartData;
+  var labels;
+
+  barChartData = {
+    labels: "Fechas Totales por Seccion",
+    datasets: [
+      {
+        label: "fecha",
+        backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+        borderColor: window.chartColors.red,
+        borderWidth: 1,
+        data: d1,
+      },
+      
+    ],
+  };
+  console.log(barChartData);
+
+}

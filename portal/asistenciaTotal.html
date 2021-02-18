@@ -49,16 +49,9 @@
 <script type="text/javascript">
 var estaciones = [];
 //var arreglo = [];
-var campos = ["ubicacion","nombre","carnet","fecha"];
+var campos = ["count","nombre","fecha"];
 var arreglo;
 
-async function fetchData() {
-  var res;
-  res = await fetch("https://arcgis-web.url.edu.gt/incyt/api/qr/getUbicaciones");
-  this.estaciones = await res.json();
-  console.log(this.estaciones);
-  cargaEstacion('selectEstacion2')
-}
 
 
 function cargaEstacion(s) {
@@ -117,12 +110,11 @@ function createTableColumns(arreglo, campos) {
 
 async function getDatea(){
 
-  var u = document.getElementById("selectEstacion2").value;
   var fecha1 = document.getElementById("f1").value;
   var fecha2 = document.getElementById("f2").value;
   var hora1 = document.getElementById("t1").value;
   var hora2 = document.getElementById("t2").value;
-  var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=${u}&fecha1=${fecha1}&fecha2=${fecha2}&horaInicial=${hora1}&horaFinal=${hora2}`;
+  var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getAsistenciaTotal?fecha1=${fecha1}&fecha2=${fecha2}&horaInicial=${hora1}&horaFinal=${hora2}`;
 
   console.log(url);
   var arreglo = [];
@@ -147,7 +139,6 @@ async function getDatea(){
     </head>
     
       <body>
-      <!--<body onload="fetchData()">-->
 
     <div id="main fs20" >
       <h1>Reporte de asistencia total</h1>
@@ -206,6 +197,10 @@ async function getDatea(){
 
     <button class="btn btn-primary  navbar-btn" onclick="getDatea()" >Generar reporte</button>
      <br><br>
+    <div id="container" style="width: 100%;">
+      <canvas id="canvas"></canvas>
+    </div>
+
     <div id = "resultados"> </div>
 
     <section>
