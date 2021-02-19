@@ -80,8 +80,8 @@ const getAsistenciaTotal = (request, response) => {
             from asistencia a, ubicaciones u
             where a.ubicacion = u.ubicacion
             and fecha between '${f1}' and   '${f2}'    
-            group by u.nombre, fecha::DATE
-   
+            group by u.nombre, fecha::DATE 
+            order by u.nombre,fecha::DATE 
          ` 
   ;
   console.log(q);
