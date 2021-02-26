@@ -106,13 +106,12 @@ const getAsistenciaTotal = (request, response) => {
   const horaFinal = request.query.horaFinal;
   var f1 = fecha1 + ' ' + horaInicial;
   var f2 = fecha2 + ' ' + horaFinal;
-  var q = `select count(*), u.nombre, fecha::DATE
+  var q = `select count(*), u.nombre, cast(fecha::DATE as text)
             from asistencia a, ubicaciones u
             where a.ubicacion = u.ubicacion
             and fecha between '${f1}' and   '${f2}'
-            group by u.nombre, fecha::DATE
-            order by u.nombre,fecha::DATE
-         `
+            group by u.nombre, cast(fecha::DATE as text)
+            order by u.nombre, cast(fecha::DATE as text)         `
   ;
   console.log(q);
   pool.query(q, (error, results) => {
@@ -132,14 +131,13 @@ const getAsistenciaTotal = (request, response) => {
   const horaFinal = request.query.horaFinal;
   var f1 = fecha1 + ' ' + horaInicial;
   var f2 = fecha2 + ' ' + horaFinal;
-  var q = `select count(*), u.nombre, fecha::DATE
+  var q = `select count(*), u.nombre, cast(fecha::DATE as text)
             from asistencia a, ubicaciones u
             where a.ubicacion = u.ubicacion
             and fecha between '${f1}' and   '${f2}'
             and a.ubicacion = '${ubicacion}'
-            group by u.nombre, fecha::DATE
-            order by u.nombre,fecha::DATE
-         `
+            group by u.nombre, cast(fecha::DATE as text)
+            order by u.nombre, cast(fecha::DATE as text)         `
   ;
   console.log(q);
   pool.query(q, (error, results) => {
