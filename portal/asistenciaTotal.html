@@ -106,6 +106,10 @@ function createTableColumns(arreglo, campos) {
   console.log("creando columnas con datos de tabla***************");
 }
 
+function showChart(d){
+  console.log('********************');
+  console.log(d);
+}
 
 
 async function getDatea(){
@@ -121,8 +125,11 @@ async function getDatea(){
   var res;
   res = await fetch(url);
   var d = await res.json();
-  console.log('d');
-  console.log(d);
+
+  //var urlGraph = `https://arcgis-web.url.edu.gt/incyt/api/qr/getAsistenciaTotal?ubicacion=${u}&fecha1=${fecha1}&fecha2=${fecha2}&horaInicial=${hora1}&horaFinal=${hora2}`;
+  //var res2 = await fetch(urlGraph);
+  //var d2 = await res2.json();
+
   var resultContainer = document.getElementById('resultados');
   //resultContainer.innerHTML = "";
   for(var i = 0; i < d.length ; i++){
@@ -132,6 +139,7 @@ async function getDatea(){
 
   }
   createTableColumns(d,this.campos);
+  //showChart(d2);
 }
 
 </script>
