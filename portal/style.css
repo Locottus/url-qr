@@ -1,11 +1,9 @@
 body
 {
-  background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .1)), url(Tec_background.png)50%/ cover fixed;
-    height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .1)), url(Tec_background.png)50%/ cover;
     padding: 1.5em;
   margin: auto;
   padding: 20px;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align:center;
@@ -37,7 +35,7 @@ input{
  } 
   
 h1,h2,h3{
-    margin: 0;
+    margin: 25px;
     font-weight: 200!important;
     
     color: white;
@@ -63,25 +61,56 @@ h1,h2,h3{
 height: 100%;
 }
     #tec-image{
-        width: 40%!important;
+        width: 30%!important;
     }
 .carne, 
 input, 
 select, 
 textrea{
    width: 80%; 
-    height: 25%;
 }
-    .btn{|
+    .btn{
         font-weight: 200!important;
     }
+    
+   
 } 
 
     
 }
 
+textarea{
+    width: 75%!important;
+height:1px;
+}
 
 .botones{
     padding: 0 0 5rem 0;
 }
-  #tec-image {  width: 70%;  height: auto; } 
+  #tec-image {  width: 10%;  height: auto; } 
+body{
+    padding: 0px; 
+}
+
+
+@media only screen and (min-width: 576px) {
+  
+    .footer{
+    width: 55%;
+}
+    input{
+    width: 35%!important;
+}
+    textarea{
+    width: 35%!important;
+height:1px;
+}
+
+     
+} 
+
+
+textarea{
+    font-size: 10px!important;
+    padding: 26px!important;
+}
