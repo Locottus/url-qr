@@ -1,11 +1,9 @@
 <!--
-
 <p>qr-creation works!</p>
 <p>https://mnahkies.github.io/ng-qrcode/</p>
 <p>https://www.npmjs.com/package/ng-qrcode</p>
 
 <qr-code value="Yo world!" size="300" errorCorrectionLevel="M"></qr-code>
-
 
 <qr-code value="https://www.npmjs.com/package/ng-qrcode"
          size="300"
@@ -17,56 +15,43 @@
 -->
 
 <div class="container">
-    
-    <div class="row">
-        <div class="col centro">   
-            <h1>Generador de codigos QR</h1>
-        </div>
-    </div>
-    
-
-    <div class = "row">
+   
+        <h1>Generador de codigos QR</h1>
 
         <div class="col">
             <label>Ingrese URL a convertir &nbsp;</label>
-            <input type="text"  placeholder="URL a codificar" [(ngModel)]="value" >
+            <input type="text"  placeholder="URL a codificar" [(ngModel)]="value" size="60">
         </div>
+
 
         <div class="col">
             <label>Tamaño del QR &nbsp;</label>
             <input type="number" placeholder="Tamaño del QR" [(ngModel)]="size" >
         </div>
-        
+
+
         <div class="col">   
             <label>Margen del QR &nbsp;</label>
             <input type="number" placeholder="Tamaño del margen del QR" [(ngModel)]="margin" >
         </div>
 
 
-    </div>
-
-    <div class="row">
-        <div class="col centro">   
+        
             <h1>QR Generado</h1>
-        </div>
-        <br/>
-    </div>
-
+        
 
     <div class="row">
 
         <div class="col-12">
-            <qr-code [value] = "value"
+            <qr-code id="codqr"
+                    [value] = "value"
                     [size]="size"
                     errorCorrectionLevel="H"
                     [margin]="margin">
             </qr-code>
+            <p>Haga click derecho para salvar la imagen como archivo PNG</p>
         </div>
+
     </div>
-
-
-
-
-
 
 </div>
