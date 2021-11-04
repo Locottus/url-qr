@@ -1,0 +1,52 @@
+<p>qr-creation works!</p>
+<p>https://mnahkies.github.io/ng-qrcode/</p>
+<p>https://www.npmjs.com/package/ng-qrcode</p>
+<!--
+
+<qr-code value="Yo world!" size="300" errorCorrectionLevel="M"></qr-code>
+
+
+<qr-code value="https://www.npmjs.com/package/ng-qrcode"
+         size="300"
+         errorCorrectionLevel="M"
+         centerImageSrc="undefined"
+         centerImageSize="undefined"
+         margin="4">
+</qr-code>
+-->
+
+
+<div>
+
+
+<input type="text"  placeholder="URL a codificar" [(ngModel)]="value" >
+
+<input type="number" placeholder="Tamaño del QR" [(ngModel)]="size" >
+
+<input type="number" placeholder="Tamaño del margen del QR" [(ngModel)]="margin" >
+
+
+
+<!--
+<select [(ngModel)]="errorCorrectionLevel">
+    <option *ngFor="let e of errorCorrectionLevel" 
+        [value]="e" 
+        >
+    {{e}}
+    </option>
+</select>
+-->
+
+
+</div>
+
+<div>
+
+
+<qr-code [value] = "value"
+         [size]="size"
+         errorCorrectionLevel="H"
+         [margin]="margin">
+</qr-code>
+
+</div>
