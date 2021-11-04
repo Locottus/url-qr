@@ -1,7 +1,8 @@
+<!--
+
 <p>qr-creation works!</p>
 <p>https://mnahkies.github.io/ng-qrcode/</p>
 <p>https://www.npmjs.com/package/ng-qrcode</p>
-<!--
 
 <qr-code value="Yo world!" size="300" errorCorrectionLevel="M"></qr-code>
 
@@ -15,38 +16,57 @@
 </qr-code>
 -->
 
+<div class="container">
+    
+    <div class="row">
+        <div class="col centro">   
+            <h1>Generador de codigos QR</h1>
+        </div>
+    </div>
+    
 
-<div>
+    <div class = "row">
+
+        <div class="col">
+            <label>Ingrese URL a convertir &nbsp;</label>
+            <input type="text"  placeholder="URL a codificar" [(ngModel)]="value" >
+        </div>
+
+        <div class="col">
+            <label>Tamaño del QR &nbsp;</label>
+            <input type="number" placeholder="Tamaño del QR" [(ngModel)]="size" >
+        </div>
+        
+        <div class="col">   
+            <label>Margen del QR &nbsp;</label>
+            <input type="number" placeholder="Tamaño del margen del QR" [(ngModel)]="margin" >
+        </div>
 
 
-<input type="text"  placeholder="URL a codificar" [(ngModel)]="value" >
+    </div>
 
-<input type="number" placeholder="Tamaño del QR" [(ngModel)]="size" >
-
-<input type="number" placeholder="Tamaño del margen del QR" [(ngModel)]="margin" >
-
-
-
-<!--
-<select [(ngModel)]="errorCorrectionLevel">
-    <option *ngFor="let e of errorCorrectionLevel" 
-        [value]="e" 
-        >
-    {{e}}
-    </option>
-</select>
--->
+    <div class="row">
+        <div class="col centro">   
+            <h1>QR Generado</h1>
+        </div>
+        <br/>
+    </div>
 
 
-</div>
+    <div class="row">
 
-<div>
+        <div class="col-12">
+            <qr-code [value] = "value"
+                    [size]="size"
+                    errorCorrectionLevel="H"
+                    [margin]="margin">
+            </qr-code>
+        </div>
+    </div>
 
 
-<qr-code [value] = "value"
-         [size]="size"
-         errorCorrectionLevel="H"
-         [margin]="margin">
-</qr-code>
+
+
+
 
 </div>

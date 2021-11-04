@@ -9,7 +9,7 @@ export class QrCreationComponent implements OnInit {
 
 
   value : string = "";
-  size : number = 300;
+  size : number = 400;
   //darkColor:number  = 0x37CF;
   errorCorrectionLevel : string[] = ["L","M","Q","H"];
   margin : number = 1;

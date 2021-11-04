@@ -1,3 +1,9 @@
+.body{
+  width: 100%;
+  margin: 30px;
+  padding: 20px;
+}
+
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -7,3 +13,9 @@
   .example-full-width {
     width: 100%;
   }
+
+
+.centro{
+  text-align:  text-center;
+  display: inline-block;
+}
