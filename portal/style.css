@@ -1,13 +1,12 @@
 body
 {
-  background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .1)), url(Tec_background.png)50%/ cover;
     padding: 1.5em;
   margin: auto;
   padding: 20px;
   justify-content: center;
   align-items: center;
   text-align:center;
-    
+  background-color: black;    
 }
 input{
     width: 3;
