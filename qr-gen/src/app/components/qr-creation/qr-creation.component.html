@@ -15,30 +15,23 @@
 -->
 
 <div class="container">
-   
-        <h1>Generador de codigos QR</h1>
-
+        <h2>Generador de codigos QR</h2>
         <div class="col">
             <label>Ingrese URL a convertir &nbsp;</label>
             <input type="text"  placeholder="URL a codificar" [(ngModel)]="value" size="60">
         </div>
-
 
         <div class="col">
             <label>Tamaño del QR &nbsp;</label>
             <input type="number" placeholder="Tamaño del QR" [(ngModel)]="size" >
         </div>
 
-
         <div class="col">   
             <label>Margen del QR &nbsp;</label>
             <input type="number" placeholder="Tamaño del margen del QR" [(ngModel)]="margin" >
         </div>
-
-
-        
-            <h1>QR Generado</h1>
-        
+       
+            <h2>QR Generado</h2>
 
     <div class="row">
 
@@ -51,7 +44,5 @@
             </qr-code>
             <p>Haga click derecho para salvar la imagen como archivo PNG</p>
         </div>
-
     </div>
-
 </div>
