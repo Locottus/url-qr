@@ -1,242 +1,241 @@
 <!doctype html>
+
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<script src="jquery-3.5.1.min.js"> </script>
-    
-    <script src="style.js"></script> 
+  <script src="jquery-3.5.1.min.js"> </script>
+
+
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
   <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <!-- Latest compiled and minified JavaScript -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
 
   <link type="text/css" rel="stylesheet" href="style.css">
-<link type="text/css" rel="stylesheet" href="/normalize.css">
-<link rel="stylesheet" href="nav.css">
-   <link rel="stylesheet" href="nav2.css">
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
 
-<link rel="stylesheet" href="index.css">
- <title>URL COVID QR</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <!--                                           -->
-    <!-- This script loads your compiled module.   -->
-    <script type="text/javascript" src="jsqrscanner.nocache.js"></script>
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="nav2.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+
+  <link rel="stylesheet" href="index.css">
+  <title>URL COVID QR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--                                           -->
+  <!-- This script loads your compiled module.   -->
+  <script type="text/javascript" src="jsqrscanner.nocache.js"></script>
 </head>
+
 <body>
-    <script type="text/javascript">
+  <script type="text/javascript">
 
 
-function enviarAsistencia(){
-  var c = document.getElementById("Carnet").value;
-  var ub = document.getElementById("scannedTextMemo").value.split('|');
-  console.log(c);
-  console.log(ub);
-  if (String(c).length > 0){
-    if (isNaN(ub[0])){
-      alert('codigo QR no valido');
+    function enviarAsistencia() {
+      var c = document.getElementById("Carnet").value;
+      var ub = document.getElementById("scannedTextMemo").value.split('|');
+      console.log(c);
+      console.log(ub);
+      if (String(c).length > 0) {
+        if (isNaN(ub[0])) {
+          alert('codigo QR no valido');
 
-    }else{
-      var r = confirm("Esta seguro de enviar esta asistencia?");
-        if (r == true) {
+        } else {
+          var r = confirm("Esta seguro de enviar esta asistencia?");
+          if (r == true) {
 
-          console.log('enviando asistencia');
-          var data = {
-            "carnet" : c,
-            "ubicacion" : ub[0]
-          };
-          console.log(data);
-          
-          $.post( url + "grabaAsistencia", data, function(response){ 
-            if ("{'msg':'OK'}" === response){
-              //alert("La informacion ha sido enviada correctamente. " );
-              document.getElementById("resultado").innerHTML = "Asistencia enviada correctamente";
-              console.log('INFO ENVIADA CORRECTAMENTE!');
-              //document.getElementById("btnEnviar").disabled = true;
-              //location.reload();
-            }else{
-              alert ("hubo un error al enviar el mensaje, por favor intente despues");
-              console.log("error enviando la informacion de asistencia");
+            console.log('enviando asistencia');
+            var data = {
+              "carnet": c,
+              "ubicacion": ub[0]
+            };
+            console.log(data);
 
-            }
+            $.post(url + "grabaAsistencia", data, function (response) {
+              if ("{'msg':'OK'}" === response) {
+                //alert("La informacion ha sido enviada correctamente. " );
+                document.getElementById("resultado").innerHTML = "Asistencia enviada correctamente";
+                console.log('INFO ENVIADA CORRECTAMENTE!');
+                //document.getElementById("btnEnviar").disabled = true;
+                //location.reload();
+              } else {
+                alert("hubo un error al enviar el mensaje, por favor intente despues");
+                console.log("error enviando la informacion de asistencia");
 
-          });
+              }
+
+            });
+          }
+
         }
-      
-    }
-  }else{
-    alert('ingrese un carnet valido');
-  }
-}
-
-    if (location.protocol != 'https:') { 
-      document.getElementById('secure-connection-message').style='display: block';
+      } else {
+        alert('ingrese un carnet valido');
       }
-</script>  
+    }
 
-<div class="fix">
- <div id="navbar">
-  <div class="nav-header">
-    <div class="nav-title">
-      
+    if (location.protocol != 'https:') {
+      document.getElementById('secure-connection-message').style = 'display: block';
+    }
+  </script>
+
+  <div class="fix">
+    <div id="navbar">
+      <div class="nav-header">
+        <div class="nav-title">
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
-<div class="main">
-<div id="main" style="font-size: xx-large;">
-  <div >
-  <div >
-   <div >
-     <div>
-
-     
-     </div>
-    <h2 class = "title">
-      Ingrese su carné
-    </h2>
-    <input type="text" id="Carnet" name="Carnet" class="carne"><br><br>
-      
-    <div >
-        <div class="qrscanner" id="scanner">
-        </div>
-      </div>
-      
-        <div >
-            <h2>
-              QR escaneado
-            </h2>
-          <div >
-            <textarea id="scannedTextMemo" name="scannedTextMemo"  rows="2" readonly>
-            </textarea>
-          </div>
-        </div>
-        
-        <div style="display: none;">
-            <h2>
-              Historico 
-            </h2>
-          <div >
-            <textarea id="scannedTextMemoHist" class="textInput form-memo form-field-input textInput-readonly" value="" rows="6" readonly> </textarea>
-          </div>
-        </div>
-      
+  <div class="main">
+    <div id="main" style="font-size: xx-large;">
       <div>
-        <label id="resultado" class="fs40 colorWhite"></label>
-      </div>
-      <div class="botones">
-      <button class="btn btn-warning btn-lg navbar-btn" onclick="enviarAsistencia();" >Enviar ubicación</button>
-      <button class="btn btn-primary btn-lg navbar-btn" onclick="location.reload();">Reiniciar página</button>
-      </div>
-      <div class= "footer">
-        
-      </div>
-    </div>
+        <div>
+          <div>
+            <div>
 
 
-  </div> 
-   </div>
-   
+            </div>
+            <h2 class="title">
+              Ingrese su carné
+            </h2>
+            <input type="text" id="Carnet" name="Carnet" class="carne"><br><br>
+
+            <div>
+              <div class="qrscanner" id="scanner">
+              </div>
+            </div>
+
+            <div>
+              <h2>
+                QR escaneado
+              </h2>
+              <div>
+                <textarea id="scannedTextMemo" name="scannedTextMemo" rows="2" readonly>
+            </textarea>
+              </div>
+            </div>
+
+            <div style="display: none;">
+              <h2>
+                Historico
+              </h2>
+              <div>
+                <textarea id="scannedTextMemoHist" class="textInput form-memo form-field-input textInput-readonly"
+                  value="" rows="6" readonly> </textarea>
+              </div>
+            </div>
+
+            <div>
+              <label id="resultado" class="fs40 colorWhite"></label>
+            </div>
+            <div class="botones">
+              <button class="btn btn-warning btn-lg navbar-btn" onclick="enviarAsistencia();">Enviar ubicación</button>
+              <button class="btn btn-primary btn-lg navbar-btn" onclick="location.reload();">Reiniciar página</button>
+            </div>
+            <div class="footer">
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
       <script type="text/javascript">
 
-      var prevScrollpos = window.pageYOffset;
-      window.onscroll = function() {
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
 
-      var currentScrollpos = window.pageYOffset;
-      if(prevScrollpos > currentScrollpos) {
+          var currentScrollpos = window.pageYOffset;
+          if (prevScrollpos > currentScrollpos) {
             document.getElementById("navbar").style.top = "0";
-      } else {
+          } else {
             document.getElementById("navbar").style.top = "-100px";
-      }
+          }
 
-      prevScrollpos = currentScrollpos;
+          prevScrollpos = currentScrollpos;
 
-      }
+        }
 
       </script>
-    <script type="text/javascript">
-    function onQRCodeScanned(scannedText)
-    {
-    	var scannedTextMemo = document.getElementById("scannedTextMemo");
-    	if(scannedTextMemo)
-    	{
-    		scannedTextMemo.value = scannedText;
-    	}
-    	var scannedTextMemoHist = document.getElementById("scannedTextMemoHist");
-    	if(scannedTextMemoHist)
-    	{
-    		scannedTextMemoHist.value = scannedTextMemoHist.value + '\n' + scannedText;
-    	}
-    }
-    
-    function provideVideo()
-    {
-        var n = navigator;
+      <script type="text/javascript">
+        function onQRCodeScanned(scannedText) {
+          var scannedTextMemo = document.getElementById("scannedTextMemo");
+          if (scannedTextMemo) {
+            scannedTextMemo.value = scannedText;
+          }
+          var scannedTextMemoHist = document.getElementById("scannedTextMemoHist");
+          if (scannedTextMemoHist) {
+            scannedTextMemoHist.value = scannedTextMemoHist.value + '\n' + scannedText;
+          }
+        }
 
-        if (n.mediaDevices && n.mediaDevices.getUserMedia)
-        {
-          return n.mediaDevices.getUserMedia({
-            video: {
-              facingMode: "environment"
-            },
-            audio: false
-          });
-        } 
-        
-        return Promise.reject('Your browser does not support getUserMedia');
-    }
+        function provideVideo() {
+          var n = navigator;
 
-    function provideVideoQQ()
-    {
-        return navigator.mediaDevices.enumerateDevices()
-        .then(function(devices) {
-            var exCameras = [];
-            devices.forEach(function(device) {
-            if (device.kind === 'videoinput') {
-              exCameras.push(device.deviceId)
-            }
-         });
-            
-            return Promise.resolve(exCameras);
-        }).then(function(ids){
-            if(ids.length === 0)
-            {
-              return Promise.reject('Could not find a webcam');
-            }
-            
-            return navigator.mediaDevices.getUserMedia({
+          if (n.mediaDevices && n.mediaDevices.getUserMedia) {
+            return n.mediaDevices.getUserMedia({
+              video: {
+                facingMode: "environment"
+              },
+              audio: false
+            });
+          }
+
+          return Promise.reject('Your browser does not support getUserMedia');
+        }
+
+        function provideVideoQQ() {
+          return navigator.mediaDevices.enumerateDevices()
+            .then(function (devices) {
+              var exCameras = [];
+              devices.forEach(function (device) {
+                if (device.kind === 'videoinput') {
+                  exCameras.push(device.deviceId)
+                }
+              });
+
+              return Promise.resolve(exCameras);
+            }).then(function (ids) {
+              if (ids.length === 0) {
+                return Promise.reject('Could not find a webcam');
+              }
+
+              return navigator.mediaDevices.getUserMedia({
                 video: {
                   'optional': [{
                     'sourceId': ids.length === 1 ? ids[0] : ids[1]//this way QQ browser opens the rear camera
-                    }]
+                  }]
                 }
-            });        
-        });                
-    }
-    
-    //this function will be called when JsQRScanner is ready to use
-    function JsQRScannerReady()
-    {
-        //create a new scanner passing to it a callback function that will be invoked when
-        //the scanner succesfully scan a QR code
-        var jbScanner = new JsQRScanner(onQRCodeScanned);
-        //var jbScanner = new JsQRScanner(onQRCodeScanned, provideVideo);
-        //reduce the size of analyzed image to increase performance on mobile devices
-        jbScanner.setSnapImageMaxSize(300);
-    	var scannerParentElement = document.getElementById("scanner");
-    	if(scannerParentElement)
-    	{
-    	    //append the jbScanner to an existing DOM element
-    		jbScanner.appendTo(scannerParentElement);
-    	}        
-    }
-  </script>    
+              });
+            });
+        }
+
+        //this function will be called when JsQRScanner is ready to use
+        function JsQRScannerReady() {
+          //create a new scanner passing to it a callback function that will be invoked when
+          //the scanner succesfully scan a QR code
+          var jbScanner = new JsQRScanner(onQRCodeScanned);
+          //var jbScanner = new JsQRScanner(onQRCodeScanned, provideVideo);
+          //reduce the size of analyzed image to increase performance on mobile devices
+          jbScanner.setSnapImageMaxSize(300);
+          var scannerParentElement = document.getElementById("scanner");
+          if (scannerParentElement) {
+            //append the jbScanner to an existing DOM element
+            jbScanner.appendTo(scannerParentElement);
+          }
+        }
+      </script>
 
 </body>
+
 </html>

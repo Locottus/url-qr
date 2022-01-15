@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>URL COVID QR REPORTE</title>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10px;
+      width: 30%;
+      text-align: center;
+    }
+
+    td,
+    th {
+
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+
+    centro,
+    h1,
+    h2,
+    h3,
+    label,
+    select,
+    button,
+    div {
+      text-align: center;
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
+  <link rel="manifest" href="favicons/site.webmanifest" />
+  <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5" />
+  <link rel="shortcut icon" href="favicons/favicon.ico" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="msapplication-config" content="favicons/browserconfig.xml" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+  <script src="jquery-3.5.1.min.js"> </script>
+  <script src="html5-qrcode.min.js"></script>
+  <script src="library.js"> </script>
+  <script src="Chart.min.js"> </script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+  <!--
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+-->
+
+  <script type="text/javascript">
+    var estaciones = [];
+    //var arreglo = [];
+    var campos = ["ubicacion", "nombre", "carnet", "fecha"];
+    var arreglo;
+    var color = Chart.helpers.color;
+
+    async function fetchData() {
+      var res;
+      res = await fetch("https://arcgis-web.url.edu.gt/incyt/api/qr/getUbicaciones");
+      this.estaciones = await res.json();
+      console.log(this.estaciones);
+      cargaEstacion('selectEstacion2')
+    }
+
+
+    function cargaEstacion(s) {
+      var select = document.getElementById(s);
+
+      var el = document.createElement("option");
+      el.textContent = " "; // this.estaciones[i].estacion;
+      el.value = " "; //this.estaciones[i].estacion;
+      select.appendChild(el);
+
+      for (var i = 0; i < this.estaciones.length; i++) {
+        var el = document.createElement("option");
+        el.textContent = this.estaciones[i].nombre;
+        el.value = this.estaciones[i].ubicacion;
+        select.appendChild(el);
+      }
+      //this.parms.estacion = this.estaciones[0].estacion;
+    }
+
+
+    function createTableColumns(arreglo, campos) {
+      //this.arreglo = arreglo;
+      //this.campos = campos;
+      console.log("creando columnas con datos de tabla***************");
+      this.arreglo = arreglo;
+      console.log(arreglo);
+      console.log(this.campos);
+
+      var table = document.getElementById("tableInfo");
+      var h1 = "\n<tr>\n";
+      for (var i = 0; i < campos.length; i++) {
+        h1 = h1 + " <th>" + campos[i] + "</th> \n";
+      }
+
+      h1 = h1 + "\n</tr>\n";
+      console.log(h1);
+
+      var h2 = "";
+      for (var i = 0; i < arreglo.length; i++) {
+        h2 = h2 + "<tr>\n";
+        for (var j = 0; j < campos.length; j++) {
+          h2 = h2 + " <td>" + arreglo[i][campos[j]] + "</td>\n";
+        }
+        h2 = h2 + "</tr>\n";
+      }
+      //console.log(h2);
+      var tableTail = ` 
+</table>
+`;
+      //console.log(h2);
+      table.innerHTML = h1 + h2 + tableTail;
+      console.log("creando columnas con datos de tabla***************");
+    }
+
+    function showChart(d) {
+      var ctx = document.getElementById("canvas").getContext("2d");
+      console.log('********************');
+      console.log(d);
+      var f = [];
+      var data1 = [];
+      for (var i = 0; i < d.length; i++) {
+        f.push(d[i].fecha);
+        data1.push(d[i].count);
+      }
+      console.log(f, data1);
+      var barChartData;
+
+      barChartData = {
+        labels: f,
+        datasets: [
+          {
+            label: d[0].nombre,
+            backgroundColor: color('#3268a8').alpha(0.5).rgbString(),
+            borderColor: '#3268a8',
+            borderWidth: 1,
+            data: data1,
+          },
+        ],
+      };
+
+      window.myBar = new Chart(ctx, {
+        type: "bar",
+        data: barChartData,
+        options: {
+          responsive: true,
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: 'reporte de asistencia',
+          },
+        },
+      });
+
+
+    }
+
+
+    async function getDatea() {
+
+      var u = document.getElementById("selectEstacion2").value;
+      var fecha1 = document.getElementById("f1").value;
+      var fecha2 = document.getElementById("f2").value;
+      var hora1 = document.getElementById("t1").value;
+      var hora2 = document.getElementById("t2").value;
+      var url = `https://arcgis-web.url.edu.gt/incyt/api/qr/getRangoAsistencia?ubicacion=${u}&fecha1=${fecha1}&fecha2=${fecha2}&horaInicial=${hora1}&horaFinal=${hora2}`;
+
+      console.log(url);
+      var arreglo = [];
+      var res;
+      res = await fetch(url);
+      var d = await res.json();
+      var resultContainer = document.getElementById('resultados');
+      //resultContainer.innerHTML = "";
+
+      var urlGraph = `https://arcgis-web.url.edu.gt/incyt/api/qr/getAsistenciaTotalUbicacion?ubicacion=${u}&fecha1=${fecha1}&fecha2=${fecha2}&horaInicial=${hora1}&horaFinal=${hora2}`;
+      var res2 = await fetch(urlGraph);
+      var d2 = await res2.json();
+
+
+      for (var i = 0; i < d.length; i++) {
+        arreglo.push(d[i].carnet, d[i].ubicacion, d[i].fecha);
+        console.log(d[i]);
+        //resultContainer.innerHTML  += `<div>${d[i].carnet}  ${d[i].fecha}</div>`;
+
+      }
+      //resultContainer.innerHTML  += `<div>${d[i].carnet}  ${d[i].fecha}</div>`;
+
+      //console.log('arreglo');
+      //console.log(arreglo);
+      createTableColumns(d, this.campos);
+
+      showChart(d2);
+    }
+
+    function download_csv() {
+      var archivo = prompt(
+        "Ingrese el nombre del archivo a salvar:",
+        "archivo_datos.csv"
+      );
+      if (archivo == null || archivo == "") {
+        console.log("User cancelled the prompt.");
+      } else {
+        //DOWNLOADING FILE
+        //archivo = archivo.replace(/ /g,'');//removing white spaces from file name
+        if (archivo.toUpperCase().indexOf(".CSV") == -1) {
+          archivo = archivo + ".csv";
+        }
+        console.log(archivo);
+        console.log(campos);
+        console.log(arreglo);
+        //here i create the csv.
+
+        var csv = "";
+
+        //set titles
+        for (var i = 0; i < campos.length; i++) {
+          csv += campos[i] + ",";
+        }
+        //set data
+        for (var i = 0; i < arreglo.length; i++) {
+          csv += "\n";
+          for (var j = 0; j < campos.length; j++) {
+            csv += arreglo[i][campos[j]] + ",";
+          }
+        }
+        csv += "\n";
+
+        console.log(csv);
+        var hiddenElement = document.createElement("a");
+        hiddenElement.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
+        hiddenElement.target = "_blank";
+        hiddenElement.download = archivo; //"people.csv";
+        hiddenElement.click();
+      }
+    }
+
+  </script>
+
+</head>
+
+<body onload="fetchData()">
+
+
+  <div id="main fs20 ">
+    <h1>Reporte de asistencia</h1>
+    <h3>Ubicacion</h3>
+    <select id="selectEstacion2">
+    </select>
+    <div>
+      <table>
+        <tr>
+          <th>Fecha Inicial</th>
+          <th>Fecha Final</th>
+        </tr>
+        <tr>
+          <td>
+            <div>
+
+              <input type="date" id="f1" name="f1">
+            </div>
+          </td>
+          <td>
+            <div>
+              <input type="date" id="f2" name="f2">
+            </div>
+
+          </td>
+        </tr>
+      </table>
+    </div>
+    <table>
+      <tr>
+        <th>Hora Inicial</th>
+        <th>Hora Final</th>
+      </tr>
+      <tr>
+        <td>
+          <div>
+            <input type="time" id="t1" name="t1">
+          </div>
+
+        </td>
+        <td>
+          <div>
+            <input type="time" id="t2" name="t2">
+          </div>
+
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div>
+    <button class="btn btn-primary   " onclick="getDatea()">Generar reporte</button>
+    <br><br>
+  </div>
+  <div id="container" style="width: 100%;">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <div id="resultados"> </div>
+  <section>
+    <div>
+      <table id="tableInfo" class="table table-striped tableInfo"></table>
+    </div>
+    <div>
+
+      <button class="btn btn-secondary  " onclick="download_csv()">Descargar reporte</button>
+
+
+    </div>
+  </section>
+
+</body>
+
+</html>

@@ -1,12 +1,13 @@
 body
 {
-    padding: 1.5em;
+  padding: 1.5em;
   margin: auto;
   padding: 20px;
   justify-content: center;
   align-items: center;
   text-align:center;
-  background-color: black;    
+  background-color: black;   
+  /*background-image: url("paper.gif");*/ 
 }
 input{
     width: 3;
@@ -76,7 +77,6 @@ textrea{
 } 
 
     
-}
 
 textarea{
     width: 75%!important;
